@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
 import com.example.kmc.Individual;
+import com.example.kmc.PSAdapters.myadapterPS2;
 import com.example.kmc.R;
 import com.example.kmc.PSAdapters.myadapter;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +31,7 @@ public class PSAmountToDB extends AppCompatActivity {
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
 
-    myadapter adapter;
+    myadapterPS2 adapter;
     String village;
     String district;
     String mandal;
@@ -43,7 +44,7 @@ public class PSAmountToDB extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         datalist=new ArrayList<>();
-        adapter=new myadapter(datalist);
+        adapter=new myadapterPS2(datalist);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
