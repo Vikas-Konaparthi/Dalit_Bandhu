@@ -6,12 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.kmc.Individual;
 import com.example.kmc.R;
-import com.example.kmc.myadapter2;
 import com.example.kmc.myadapter4;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;

@@ -147,9 +147,12 @@ public class addIndividual extends AppCompatActivity {
 //            individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
 //            individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
             //
+            individualInfo.put("individualAmountRequired", "");
+            individualInfo.put("spAmountApproved", "");
             individualInfo.put("dbAccount", "");
             individualInfo.put("psUpload", my_url);
             individualInfo.put("spApproved", "");
+            individualInfo.put("spApproved2", "");
             individualInfo.put("ctrApproved", "");
             individualInfo.put("secOfficerApproved", "");
             individualInfo.put("so_remarks", "");

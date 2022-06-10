@@ -64,7 +64,9 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.c2:
-                i = new Intent(this, SPLogin.class);
+                i = new Intent(this, SPAmountToDB.class);
+                i.putExtra("village1",village1);
+                i.putExtra("village2",village2);
                 startActivity(i);
                 break;
             case R.id.c3:

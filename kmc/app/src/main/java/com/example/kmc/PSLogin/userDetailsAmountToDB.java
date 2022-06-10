@@ -46,12 +46,12 @@ public class userDetailsAmountToDB extends AppCompatActivity {
     public TextView individualBankAccNo;
     public TextView individualPSUpload;
     public TextView getIndividualBankIFSC;
-    private TextInputEditText individualSPRemarks;
-    private TextInputEditText individualVendorName;
-    private TextInputEditText individualVendorBankAccountNumber;
-    private TextInputEditText individualVendorBankIFSC;
-    private TextInputEditText individualVendorAgency;
-    private TextInputEditText individualVendorBankName;
+    private TextInputEditText individualAmountRequired;
+//    private TextInputEditText individualVendorName;
+//    private TextInputEditText individualVendorBankAccountNumber;
+//    private TextInputEditText individualVendorBankIFSC;
+//    private TextInputEditText individualVendorAgency;
+//    private TextInputEditText individualVendorBankName;
     FirebaseFirestore db;
     String indivName;
     String fatherName;
@@ -68,11 +68,13 @@ public class userDetailsAmountToDB extends AppCompatActivity {
     String collectorApproved="";
     String bankIFSC;
     //    String groundingStatus="";
-    String vendorName;
-    String vendorBankAccount;
-    String vendorBankIFSC;
-    String vendorAgency;
-    String vendorBankName;
+//    String vendorName;
+//    String vendorBankAccount;
+//    String vendorBankIFSC;
+//    String vendorAgency;
+//    String vendorBankName;
+    String amountRequired;
+
     private final int PICK_IMAGE_REQUEST = 22;
     String my_url="";
     Uri image_uri = null;
@@ -100,12 +102,12 @@ public class userDetailsAmountToDB extends AppCompatActivity {
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
-        individualSPRemarks=(TextInputEditText) findViewById(R.id.remarks);
-        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
-        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
-        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
-        individualVendorAgency=(TextInputEditText) findViewById(R.id.vendorAgency);
-        individualVendorBankName=(TextInputEditText) findViewById(R.id.vendorBankName);
+        individualAmountRequired=(TextInputEditText) findViewById(R.id.individualAmountRequired);
+//        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
+//        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
+//        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
+//        individualVendorAgency=(TextInputEditText) findViewById(R.id.vendorAgency);
+//        individualVendorBankName=(TextInputEditText) findViewById(R.id.vendorBankName);
 //        uploadImage=(Button) findViewById(R.id.uploadImage);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
         individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
@@ -150,64 +152,71 @@ public class userDetailsAmountToDB extends AppCompatActivity {
     }
     public void submitButton(View view) {
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
-        vendorBankAccount=individualVendorBankAccountNumber.getText().toString();
-        vendorName=individualVendorName.getText().toString();
-        vendorBankIFSC=individualVendorBankIFSC.getText().toString();
-        vendorAgency=individualVendorAgency.getText().toString();
-        vendorBankName=individualVendorBankName.getText().toString();
+        amountRequired=individualAmountRequired.getText().toString();
+//        vendorBankAccount=individualVendorBankAccountNumber.getText().toString();
+//        vendorName=individualVendorName.getText().toString();
+//        vendorBankIFSC=individualVendorBankIFSC.getText().toString();
+//        vendorAgency=individualVendorAgency.getText().toString();
+//        vendorBankName=individualVendorBankName.getText().toString();
 //        if(collectorApproved.equals("yes"))
 //        {
 //            uploadImage.setEnabled(true);
 //        }
-
-        updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC);
+        updateData(aadharNumber,amountRequired);
+//        updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC);
     }
 
-    public void updateData(String aadharNumber,String vendorAgency,String vendorName, String vendorBankName,String vendorBankAccount,String vendorBankIFSC){
-        Map<String, Object> individualInfo = new HashMap<String, Object>();
-        individualInfo.put("vendorName", vendorName.trim());
-        individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
-        individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
-        individualInfo.put("vendorAgency", vendorAgency.trim());
-        individualInfo.put("vendorBankName", vendorBankName.trim());
+    public void updateData(String aadharNumber,String amountRequired){
+        if (amountRequired.length() != 0) {
+
+
+            Map<String, Object> individualInfo = new HashMap<String, Object>();
+            individualInfo.put("individualAmountRequired", amountRequired.trim());
+//        individualInfo.put("vendorName", vendorName.trim());
+//        individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
+//        individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
+//        individualInfo.put("vendorAgency", vendorAgency.trim());
+//        individualInfo.put("vendorBankName", vendorBankName.trim());
 //        individualInfo.put("groundingStatus", groundingStatus);
 
 
+            db.collection("individuals").whereEqualTo("aadhar", aadharNumber)
+                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                        String documentID = documentSnapshot.getId();
+                        db.collection("individuals")
+                                .document(documentID)
+                                .update(individualInfo)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
 
-        db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful() && !task.getResult().isEmpty()){
-                    DocumentSnapshot documentSnapshot=task.getResult().getDocuments().get(0);
-                    String documentID=documentSnapshot.getId();
-                    db.collection("individuals")
-                            .document(documentID)
-                            .update(individualInfo)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
+                                        Toast.makeText(userDetailsAmountToDB.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(userDetailsAmountToDB.this, PSAmountToDB.class);
+                                        i.putExtra("village", village.trim());
+                                        i.putExtra("mandal", mandal.trim());
+                                        i.putExtra("district", district.trim());
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(userDetailsAmountToDB.this, "Error occured", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-                                    Toast.makeText(userDetailsAmountToDB.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(userDetailsAmountToDB.this, PSAmountToDB.class);
-                                    i.putExtra("village",village.trim());
-                                    i.putExtra("mandal", mandal.trim());
-                                    i.putExtra("district",district.trim());
-                                    startActivity(i);
-                                    finish();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(userDetailsAmountToDB.this, "Error occured", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }else{
-                    Toast.makeText(userDetailsAmountToDB.this, "Failed", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(userDetailsAmountToDB.this, "Failed", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            Toast.makeText(this, "Enter all fields", Toast.LENGTH_SHORT).show();
+        }
 
     }
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

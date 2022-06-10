@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,7 +38,6 @@ public class PSLogin extends AppCompatActivity {
         // click handling code
         String uname= username.getEditText().getText().toString();
         String pass= password.getEditText().getText().toString();
-
         DocumentReference document=db.collection("psofficer").document(uname.trim());
         document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

@@ -109,87 +109,103 @@
                 android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Enter Vendor Name"
-                            android:layout_below="@id/document"
-                            android:layout_marginTop="30dp"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                            >
+                                    <com.google.android.material.textfield.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Enter Amount Required"
+                                        android:layout_below="@id/document"
+                                        android:layout_marginTop="30dp"
+                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                        >
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:id="@+id/vendorName"
-                                android:layout_height="wrap_content"
-                                />
+                                        <com.google.android.material.textfield.TextInputEditText
+                                            android:layout_width="match_parent"
+                                            android:id="@+id/individualAmountRequired"
+                                            android:layout_height="wrap_content"
+                                            />
 
-                        </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Vendor Agency Name"
-                android:layout_below="@id/document"
-                android:layout_marginTop="30dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                >
+                                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:hint="Enter Vendor Name"-->
+<!--                            android:layout_below="@id/document"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                            >-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:id="@+id/vendorAgency"
-                    android:layout_height="wrap_content"
-                    />
+<!--                            <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:id="@+id/vendorName"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Vendor Bank Name"
-                android:layout_below="@id/document"
-                android:layout_marginTop="30dp"
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Enter Vendor Agency Name"-->
+<!--                android:layout_below="@id/document"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                >-->
 
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                >
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:id="@+id/vendorAgency"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    />-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:id="@+id/vendorBankName"
-                    android:layout_height="wrap_content"
-                    />
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Enter Vendor Bank Name"-->
+<!--                android:layout_below="@id/document"-->
+<!--                android:layout_marginTop="30dp"-->
 
-            </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Enter Vendor Bank Account Number"
-                            android:layout_below="@id/vendorName"
-                            android:layout_marginTop="30dp"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                            >
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                >-->
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:id="@+id/vendorBankAccountNo"
-                                android:layout_height="wrap_content"
-                                />
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:id="@+id/vendorBankName"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    />-->
 
-                        </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Enter Vendor Bank IFSC"
-                            android:layout_below="@id/vendorBankAccountNo"
-                            android:layout_marginTop="30dp"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                            >
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:hint="Enter Vendor Bank Account Number"-->
+<!--                            android:layout_below="@id/vendorName"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                            >-->
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:id="@+id/vendorBankIFSC"
-                                android:layout_height="wrap_content"
-                                />
+<!--                            <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:id="@+id/vendorBankAccountNo"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                />-->
 
-                        </com.google.android.material.textfield.TextInputLayout>
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:hint="Enter Vendor Bank IFSC"-->
+<!--                            android:layout_below="@id/vendorBankAccountNo"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                            >-->
+
+<!--                            <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:id="@+id/vendorBankIFSC"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                />-->
+
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
             <!--            <Button-->
             <!--                android:id="@+id/uploadImage"-->
             <!--                android:layout_width="match_parent"-->

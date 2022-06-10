@@ -5,13 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
 import com.example.kmc.Individual;
+import com.example.kmc.PSAdapters.myadapterPS2;
 import com.example.kmc.R;
-import com.example.kmc.SPAdapters.myadapter2;
+import com.example.kmc.SPAdapters.myadapterSP2;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,24 +23,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ListOfBen extends AppCompatActivity {
+public class SPAmountToDB extends AppCompatActivity {
+
     public Toolbar toolbar;
     RecyclerView recyclerView;
 
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
 
-    myadapter2 adapter;
+    myadapterSP2 adapter;
     String village1;
     String village2;
+
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spzone);
+        setContentView(R.layout.activity_spamount_to_db);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        datalist=new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("village1");
@@ -47,12 +50,13 @@ public class ListOfBen extends AppCompatActivity {
             village1 = value;
             village2 = value2;
         }
-        adapter=new myadapter2(datalist,village1,village2);
+        datalist=new ArrayList<>();
+        adapter=new myadapterSP2(datalist,village1,village2);
         recyclerView.setAdapter(adapter);
+        db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-        db=FirebaseFirestore.getInstance();
 
 
         db.collection("individuals").get()
@@ -62,9 +66,13 @@ public class ListOfBen extends AppCompatActivity {
                         List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
                         for(DocumentSnapshot d:list)
                         {
+
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
-                                datalist.add(obj);
+                            if(!obj.getIndividualAmountRequired().equals(""))
+                            {
+                                if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
+                                    datalist.add(obj);
+                                }
                             }
                         }
                         adapter.notifyDataSetChanged();
@@ -74,6 +82,7 @@ public class ListOfBen extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
+
 
     }
 }

@@ -31,6 +31,7 @@ public class Individual {
     String vendorIFSC;
     String groundingStatus;
     String grounding_img;
+    String individualAmountRequired;
 
     public String getSecOfficerUpload() {
         return secOfficerUpload;
@@ -50,7 +51,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status) {
+    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -79,7 +80,16 @@ public class Individual {
         this.vendorName=vendorName;
         this.groundingStatus=groundingStatus;
         this.grounding_img=grounding_img;
+        this.individualAmountRequired=individualAmountRequired;
 
+    }
+
+    public String getIndividualAmountRequired() {
+        return individualAmountRequired;
+    }
+
+    public void setIndividualAmountRequired(String individualAmountRequired) {
+        this.individualAmountRequired = individualAmountRequired;
     }
 
     public String getGrounding_img() {
