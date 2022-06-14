@@ -153,6 +153,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("psUpload", my_url);
             individualInfo.put("spApproved", "");
             individualInfo.put("spApproved2", "");
+            individualInfo.put("spApproved3", "");
             individualInfo.put("ctrApproved", "");
             individualInfo.put("secOfficerApproved", "");
             individualInfo.put("so_remarks", "");
@@ -166,6 +167,9 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("vendorIFSC", "");
             individualInfo.put("vendorAgency", "");
             individualInfo.put("vendorBankName", "");
+            individualInfo.put("quotationImage", "");
+            individualInfo.put("psApprovedAmount", "");
+
 
             //
             db.collection("individuals").add(individualInfo)

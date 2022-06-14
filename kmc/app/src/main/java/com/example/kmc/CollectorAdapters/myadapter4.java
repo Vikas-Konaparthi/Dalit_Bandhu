@@ -1,4 +1,4 @@
-package com.example.kmc;
+package com.example.kmc.CollectorAdapters;
 
 
 import android.annotation.SuppressLint;
@@ -14,10 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kmc.CLogin.CollectorUserDetails;
-import com.example.kmc.CLogin.CollectorZone;
-import com.example.kmc.PSLogin.userDetails;
-import com.example.kmc.SOLogin.SOUserDetails;
-import com.example.kmc.SPLogin.SPUserDetails;
+import com.example.kmc.Individual;
+import com.example.kmc.R;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -97,9 +95,6 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
                 i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
-
-
-
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
                 ((Activity)view.getContext()).finish();

@@ -1,4 +1,4 @@
-package com.example.kmc.SPLogin;
+package com.example.kmc.CLogin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -10,21 +10,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.kmc.PSLogin.PSAddEdit;
+import com.example.kmc.PSLogin.PSAmountToDB;
 import com.example.kmc.R;
+import com.example.kmc.SPLogin.ListOfBen;
 import com.example.kmc.login.Collector_Login;
 import com.example.kmc.login.SOLogin;
-import com.example.kmc.login.SPLogin;
 
-public class SP_Action extends AppCompatActivity implements View.OnClickListener {
+public class CollectorAction extends AppCompatActivity implements View.OnClickListener {
 
     public CardView card1,card2,card3,card4;
-    String village1;
-    String village2;
+    String village;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sp_action);
+        setContentView(R.layout.activity_collector_action);
 
         card1 = (CardView) findViewById(R.id.c1);
         card2 = (CardView) findViewById(R.id.c2);
@@ -37,11 +38,7 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
         card4.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String value = extras.getString("village1");
-            String value2 = extras.getString("village2");
-            //The key argument here must match that used in the other activity
-            village1 = value;
-            village2 = value2;
+            village = extras.getString("village");
         }else{
             Log.d("extra", "no");
         }
@@ -58,21 +55,17 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
 
         switch (v.getId()){
             case R.id.c1:
-                i = new Intent(this, ListOfBen.class);
-                i.putExtra("village1",village1);
-                i.putExtra("village2",village2);
+                i = new Intent(this, CollectorListOfBen.class);
+                i.putExtra("village",village);
                 startActivity(i);
                 break;
             case R.id.c2:
-                i = new Intent(this, SPAmountToDB.class);
-                i.putExtra("village1",village1);
-                i.putExtra("village2",village2);
+                i = new Intent(this, CollectorAmountToDB.class);
+                i.putExtra("village",village);
                 startActivity(i);
                 break;
             case R.id.c3:
-                i = new Intent(this, SPAmountDBToBen.class);
-                i.putExtra("village1",village1);
-                i.putExtra("village2",village2);
+                i = new Intent(this, SOLogin.class);
                 startActivity(i);
                 break;
             case R.id.c4:

@@ -29,9 +29,15 @@ public class Individual {
     String vendorName;
     String vendorAccountNo;
     String vendorIFSC;
+    String vendorAgency;
+    String vendorBankName;
     String groundingStatus;
     String grounding_img;
     String individualAmountRequired;
+    String spApproved2;
+    String spAmountApproved;
+    String psApprovedAmount;
+    String quotationImage;
 
     public String getSecOfficerUpload() {
         return secOfficerUpload;
@@ -51,7 +57,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired) {
+    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired,String spApproved2,String spAmountApproved,String psApprovedAmount,String vendorAgency,String vendorBankName,String quotationImage) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -81,7 +87,60 @@ public class Individual {
         this.groundingStatus=groundingStatus;
         this.grounding_img=grounding_img;
         this.individualAmountRequired=individualAmountRequired;
+        this.spApproved2=spApproved2;
+        this.spAmountApproved=spAmountApproved;
+        this.psApprovedAmount=psApprovedAmount;
+        this.vendorAgency=vendorAgency;
+        this.vendorBankName=vendorBankName;
+        this.quotationImage=quotationImage;
+    }
 
+    public String getVendorAgency() {
+        return vendorAgency;
+    }
+
+    public void setVendorAgency(String vendorAgency) {
+        this.vendorAgency = vendorAgency;
+    }
+
+    public String getVendorBankName() {
+        return vendorBankName;
+    }
+
+    public String getQuotationImage() {
+        return quotationImage;
+    }
+
+    public void setQuotationImage(String quotationImage) {
+        this.quotationImage = quotationImage;
+    }
+
+    public void setVendorBankName(String vendorBankName) {
+        this.vendorBankName = vendorBankName;
+    }
+
+    public String getPsApprovedAmount() {
+        return psApprovedAmount;
+    }
+
+    public void setPsApprovedAmount(String psApprovedAmount) {
+        this.psApprovedAmount = psApprovedAmount;
+    }
+
+    public String getSpApproved2() {
+        return spApproved2;
+    }
+
+    public void setSpApproved2(String spApproved2) {
+        this.spApproved2 = spApproved2;
+    }
+
+    public String getSpAmountApproved() {
+        return spAmountApproved;
+    }
+
+    public void setSpAmountApproved(String spAmountApproved) {
+        this.spAmountApproved = spAmountApproved;
     }
 
     public String getIndividualAmountRequired() {

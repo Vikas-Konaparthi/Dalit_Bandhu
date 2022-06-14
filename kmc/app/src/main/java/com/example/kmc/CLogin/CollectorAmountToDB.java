@@ -1,4 +1,5 @@
 package com.example.kmc.CLogin;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,9 +9,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
+import com.example.kmc.CollectorAdapters.myadapter4;
+import com.example.kmc.CollectorAdapters.myadapter4Collector2;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
-import com.example.kmc.myadapter4;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CollectorZone extends AppCompatActivity {
+public class CollectorAmountToDB extends AppCompatActivity {
+
     public Toolbar toolbar;
     RecyclerView recyclerView;
 
@@ -29,7 +32,7 @@ public class CollectorZone extends AppCompatActivity {
     String village;
     ProgressBar progressBar;
 
-    myadapter4 adapter;
+    myadapter4Collector2 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +44,7 @@ public class CollectorZone extends AppCompatActivity {
         if (extras != null) {
             village= extras.getString("village");
         }
-        adapter=new myadapter4(datalist,village);
+        adapter=new myadapter4Collector2(datalist,village);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -59,10 +62,9 @@ public class CollectorZone extends AppCompatActivity {
                             Individual obj=d.toObject(Individual.class);
                             if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
                             {
-                                if(obj.getSpApproved().equals("yes"))
-                                datalist.add(obj);
+                                if(obj.getSpApproved2().equals("yes"))
+                                    datalist.add(obj);
                             }
-
                         }
                         adapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.GONE);
@@ -74,4 +76,3 @@ public class CollectorZone extends AppCompatActivity {
 
     }
 }
-

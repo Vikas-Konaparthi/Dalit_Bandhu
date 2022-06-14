@@ -13,6 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".SPLogin.SPAmountDBToBen"
+            android:exported="false" />
+        <activity
+            android:name=".SPLogin.SPUserDetailsAmountDBToBen"
+            android:exported="false" />
+        <activity
+            android:name=".PSLogin.userDetailsAmountDBtoBen"
+            android:exported="false" />
+        <activity
+            android:name=".PSLogin.PSAmountDBToBen"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorUserDetailsAmountToDB"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorAmountToDB"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorAction"
+            android:exported="false" />
+        <activity
             android:name=".SPLogin.SPAmountToDB"
             android:exported="false" />
         <activity
@@ -55,7 +76,7 @@
             android:name=".login.Collector_Login"
             android:exported="false" />
         <activity
-            android:name=".CLogin.CollectorZone"
+            android:name=".CLogin.CollectorListOfBen"
             android:exported="false" />
         <activity
             android:name=".PSLogin.userDetails"

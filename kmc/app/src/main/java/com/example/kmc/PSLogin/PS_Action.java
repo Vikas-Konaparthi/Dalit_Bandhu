@@ -74,7 +74,10 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.c3:
-                i = new Intent(this, SOLogin.class);
+                i = new Intent(this, PSAmountDBToBen.class);
+                i.putExtra("village",village);
+                i.putExtra("mandal",mandal);
+                i.putExtra("district",district);
                 startActivity(i);
                 break;
             case R.id.c4:
