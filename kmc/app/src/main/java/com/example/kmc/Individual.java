@@ -44,6 +44,7 @@ public class Individual {
     String spApproved3;
     String soApproved;
     String so_quotation_amount;
+    String ctrApproved2;
 
     public String getSecOfficerUpload() {
         return secOfficerUpload;
@@ -63,7 +64,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired,String spApproved2,String spAmountApproved,String psRequestedAmountToBeneficiary,String vendorAgency,String vendorBankName,String quotationImage, String DbBankName, String DbBankACCNumber, String DbBankIFSC,String spApproved3,String soApproved,String so_quotation_amount) {
+    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired,String spApproved2,String spAmountApproved,String psRequestedAmountToBeneficiary,String vendorAgency,String vendorBankName,String quotationImage, String DbBankName, String DbBankACCNumber, String DbBankIFSC,String spApproved3,String soApproved,String so_quotation_amount,String ctrApproved2) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -105,10 +106,19 @@ public class Individual {
         this.spApproved3=spApproved3;
         this.soApproved=soApproved;
         this.so_quotation_amount=so_quotation_amount;
+        this.ctrApproved2=ctrApproved2;
     }
 
     public String getSo_quotation_amount() {
         return so_quotation_amount;
+    }
+
+    public String getCtrApproved2() {
+        return ctrApproved2;
+    }
+
+    public void setCtrApproved2(String ctrApproved2) {
+        this.ctrApproved2 = ctrApproved2;
     }
 
     public void setSo_quotation_amount(String so_quotation_amount) {
