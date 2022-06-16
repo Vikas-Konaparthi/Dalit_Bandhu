@@ -22,7 +22,7 @@
             android:layout_height="55dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Panchayat Secretary"
+            android:text="Special Officer"
             android:textColor="#fff"/>
 
 

@@ -157,17 +157,17 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
             }
         });
         collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
-        if(collectorApproved.equals("yes"))
-        {
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-            individualSPRemarks.setEnabled(false);
-        }else if(collectorApproved.equals("no"))
-        {
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-            individualSPRemarks.setEnabled(false);
-        }
+//        if(collectorApproved.equals("yes"))
+//        {
+//            approve.setEnabled(false);
+//            reject.setEnabled(false);
+//            individualSPRemarks.setEnabled(false);
+//        }else if(collectorApproved.equals("no"))
+//        {
+//            approve.setEnabled(false);
+//            reject.setEnabled(false);
+//            individualSPRemarks.setEnabled(false);
+//        }
 
 
 //        groundImage=getIntent().getStringExtra("uGroundingImage").toString();
@@ -185,8 +185,8 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
     public void enableSubmitIfReady(){
         boolean isReady = individualSPRemarks.getText().toString().length() > 3;
         boolean isReady2 = spAmountApproved.getText().toString().length() > 3;
-        approve.setEnabled(isReady||isReady2);
-        reject.setEnabled(isReady||isReady2);
+        approve.setEnabled(isReady&&isReady2);
+        reject.setEnabled(isReady&&isReady2);
     }
 
     public void document(View view) {

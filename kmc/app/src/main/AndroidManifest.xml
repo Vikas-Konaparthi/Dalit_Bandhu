@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".SOLogin.SO_Action"
+            android:exported="false" />
+        <activity
             android:name=".SPLogin.SPAmountDBToBen"
             android:exported="false" />
         <activity
