@@ -187,7 +187,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
         individualInfo.put("vendorAgency", vendorAgency.trim());
         individualInfo.put("vendorBankName", vendorBankName.trim());
-            individualInfo.put("psApprovedAmount", appAmountToBen.trim());
+            individualInfo.put("psRequestedAmountToBeneficiary", appAmountToBen.trim());
             individualInfo.put("quotationImage", img_url.trim());
 //        individualInfo.put("groundingStatus", groundingStatus);
 

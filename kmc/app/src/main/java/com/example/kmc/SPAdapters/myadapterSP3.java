@@ -87,7 +87,7 @@ public class myadapterSP3 extends RecyclerView.Adapter<myadapterSP3.myviewholder
                 i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uQuotationImage",datalist.get(position).getQuotationImage());
                 i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
-                i.putExtra("uPSRequestedAmount",datalist.get(position).getPsApprovedAmount());
+                i.putExtra("uPSRequestedAmount",datalist.get(position).getPsRequestedAmountToBeneficiary());
                 i.putExtra("uVendorName",datalist.get(position).getVendorName());
                 i.putExtra("uVendorBankName",datalist.get(position).getVendorBankName());
                 i.putExtra("uVendorAgency",datalist.get(position).getVendorAgency());

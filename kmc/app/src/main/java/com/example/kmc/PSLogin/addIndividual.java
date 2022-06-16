@@ -168,7 +168,8 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("vendorAgency", "");
             individualInfo.put("vendorBankName", "");
             individualInfo.put("quotationImage", "");
-            individualInfo.put("psApprovedAmount", "");
+            individualInfo.put("psRequestedAmountToBeneficiary", "");
+
 
 
             //

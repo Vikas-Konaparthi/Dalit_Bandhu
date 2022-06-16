@@ -36,7 +36,7 @@ public class Individual {
     String individualAmountRequired;
     String spApproved2;
     String spAmountApproved;
-    String psApprovedAmount;
+    String psRequestedAmountToBeneficiary;
     String quotationImage;
 
     public String getSecOfficerUpload() {
@@ -57,7 +57,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired,String spApproved2,String spAmountApproved,String psApprovedAmount,String vendorAgency,String vendorBankName,String quotationImage) {
+    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired,String spApproved2,String spAmountApproved,String psRequestedAmountToBeneficiary,String vendorAgency,String vendorBankName,String quotationImage) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -89,7 +89,7 @@ public class Individual {
         this.individualAmountRequired=individualAmountRequired;
         this.spApproved2=spApproved2;
         this.spAmountApproved=spAmountApproved;
-        this.psApprovedAmount=psApprovedAmount;
+        this.psRequestedAmountToBeneficiary=psRequestedAmountToBeneficiary;
         this.vendorAgency=vendorAgency;
         this.vendorBankName=vendorBankName;
         this.quotationImage=quotationImage;
@@ -111,6 +111,14 @@ public class Individual {
         return quotationImage;
     }
 
+    public String getPsRequestedAmountToBeneficiary() {
+        return psRequestedAmountToBeneficiary;
+    }
+
+    public void setPsRequestedAmountToBeneficiary(String psRequestedAmountToBeneficiary) {
+        this.psRequestedAmountToBeneficiary = psRequestedAmountToBeneficiary;
+    }
+
     public void setQuotationImage(String quotationImage) {
         this.quotationImage = quotationImage;
     }
@@ -120,11 +128,11 @@ public class Individual {
     }
 
     public String getPsApprovedAmount() {
-        return psApprovedAmount;
+        return psRequestedAmountToBeneficiary;
     }
 
     public void setPsApprovedAmount(String psApprovedAmount) {
-        this.psApprovedAmount = psApprovedAmount;
+        this.psRequestedAmountToBeneficiary = psApprovedAmount;
     }
 
     public String getSpApproved2() {
