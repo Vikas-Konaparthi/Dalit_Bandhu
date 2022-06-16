@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.CollectorUserDetailsAmountDBToBen"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorAmountDBToBen"
+            android:exported="false" />
+        <activity
             android:name=".SOLogin.SOUserDetailsAmountDBToBen"
             android:exported="false" />
         <activity

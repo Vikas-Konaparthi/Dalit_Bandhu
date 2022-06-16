@@ -1,4 +1,4 @@
-package com.example.kmc.SOLogin;
+package com.example.kmc.CLogin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
+import com.example.kmc.CollectorAdapters.myadapter4Collector2;
+import com.example.kmc.CollectorAdapters.myadapter4Collector3;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
-import com.example.kmc.SOAdapters.myadapter3;
-import com.example.kmc.SOAdapters.myadapter3SO2;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,42 +22,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SOAmountDBToBen extends AppCompatActivity {
+public class CollectorAmountDBToBen extends AppCompatActivity {
+
     public Toolbar toolbar;
     RecyclerView recyclerView;
 
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
-
-    myadapter3SO2 adapter;
-    String mandal;
-    String sector;
-    String preferredUnit;
+    String village;
     ProgressBar progressBar;
 
+    myadapter4Collector3 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_soamount_dbto_ben);
+        setContentView(R.layout.activity_collectorzone);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         datalist=new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String value = extras.getString("mandal");
-            String value2 = extras.getString("sector");
-            //String value3 = extras.getString("preferredUnit");
-            //The key argument here must match that used in the other activity
-            mandal = value;
-            sector = value2;
-            //preferredUnit = value3;
-
+            village= extras.getString("village");
         }
-        adapter=new myadapter3SO2(datalist,mandal,sector);
+        adapter=new myadapter4Collector3(datalist,village);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
+
+
 
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -67,15 +60,12 @@ public class SOAmountDBToBen extends AppCompatActivity {
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getMandal().toLowerCase(Locale.ROOT).equals(mandal.toLowerCase(Locale.ROOT))) {
-                                if(obj.getSpApproved3().equals("yes")) {
-                                    if (obj.getPreferredUnit().toLowerCase(Locale.ROOT).equals(sector.toLowerCase(Locale.ROOT))) {
-                                        datalist.add(obj);
-                                    }
-                                }
+                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
+                            {
+                                if(obj.getSpApproved3().equals("yes") && obj.getSoApproved().equals("yes"))
+                                    datalist.add(obj);
                             }
                         }
-
                         adapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.GONE);
                     }

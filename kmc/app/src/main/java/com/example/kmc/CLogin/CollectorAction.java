@@ -65,7 +65,8 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                 startActivity(i);
                 break;
             case R.id.c3:
-                i = new Intent(this, SOLogin.class);
+                i = new Intent(this, CollectorAmountDBToBen.class);
+                i.putExtra("village",village);
                 startActivity(i);
                 break;
             case R.id.c4:

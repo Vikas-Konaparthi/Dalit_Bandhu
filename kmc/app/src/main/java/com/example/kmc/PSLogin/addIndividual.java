@@ -39,7 +39,10 @@ public class addIndividual extends AppCompatActivity {
     public TextInputLayout BankName;
     public TextInputLayout BankACCNumber;
     public TextInputLayout BankIFSC;
-//    private TextInputEditText individualVendorName;
+    public TextInputLayout DbBankName;
+    public TextInputLayout DbBankACCNumber;
+    public TextInputLayout DbBankIFSC;
+    //    private TextInputEditText individualVendorName;
 //    private TextInputEditText individualVendorBankAccountNumber;
 //    private TextInputEditText individualVendorBankIFSC;
     ProgressBar pgsBar;
@@ -60,6 +63,9 @@ public class addIndividual extends AppCompatActivity {
     String bankName;
     String bankACCNumber;
     String bankIFSCNumber;
+    String dbBankName;
+    String dbBankACCNumber;
+    String dbBankIFSC;
 //    String vendorName;
 //    String vendorBankAccount;
 //    String vendorBankIFSC;
@@ -92,6 +98,10 @@ public class addIndividual extends AppCompatActivity {
         BankName  = (TextInputLayout) findViewById(R.id.BankName);
         BankACCNumber  = (TextInputLayout) findViewById(R.id.BankACCNumber);
         BankIFSC  = (TextInputLayout) findViewById(R.id.BankIFSC);
+        DbBankName  = (TextInputLayout) findViewById(R.id.DbBankName);
+        DbBankACCNumber  = (TextInputLayout) findViewById(R.id.DbBankACCNumber);
+        DbBankIFSC  = (TextInputLayout) findViewById(R.id.DbBankIFSC);
+
 //        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
 //        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
 //        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
@@ -124,11 +134,14 @@ public class addIndividual extends AppCompatActivity {
         bankName = BankName.getEditText().getText().toString();
         bankACCNumber = BankACCNumber.getEditText().getText().toString();
         bankIFSCNumber=BankIFSC.getEditText().getText().toString();
+        dbBankName = DbBankName.getEditText().getText().toString();
+        dbBankACCNumber = DbBankACCNumber.getEditText().getText().toString();
+        dbBankIFSC=DbBankIFSC.getEditText().getText().toString();
 //        vendorName= individualVendorName.getText().toString();
 //        vendorBankAccount= individualVendorBankAccountNumber.getText().toString();
 //        vendorBankIFSC= individualVendorBankIFSC.getText().toString();
         //
-        if (individualName.length() != 0 && fatherName.length() != 0 && age.length() != 0 && houseNumber.length() != 0 && aadharNumber.length() != 0 && mobileNumber.length() != 0 && preferredunit.length() != 0 && bankName.length() != 0 && bankACCNumber.length() != 0) {
+        if (individualName.length() != 0 && fatherName.length() != 0 && age.length() != 0 && houseNumber.length() != 0 && aadharNumber.length() != 0 && mobileNumber.length() != 0 && preferredunit.length() != 0 && bankName.length() != 0 && bankACCNumber.length() != 0 && dbBankName.length() != 0 && dbBankACCNumber.length() != 0 && dbBankIFSC.length() != 0 ) {
             Map<String, Object> individualInfo = new HashMap<String, Object>();
             individualInfo.put("name", individualName.trim());
             individualInfo.put("fatherName", fatherName.trim());
@@ -143,6 +156,9 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("bankName", bankName.trim());
             individualInfo.put("bankAccNo", bankACCNumber.trim());
             individualInfo.put("bankIFSC", bankIFSCNumber.trim());
+            individualInfo.put("dbBankName", dbBankName.trim());
+            individualInfo.put("dbBankAccNo", dbBankACCNumber.trim());
+            individualInfo.put("dbBankIFSC", dbBankIFSC.trim());
 //            individualInfo.put("vendorName", vendorName.trim());
 //            individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
 //            individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
@@ -168,7 +184,10 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("vendorAgency", "");
             individualInfo.put("vendorBankName", "");
             individualInfo.put("quotationImage", "");
-            individualInfo.put("psRequestedAmountToBeneficiary", "");
+            individualInfo.put("psApprovedAmount", "");
+            individualInfo.put("soApproved", "");
+            individualInfo.put("so_quotation_amount", "");
+            individualInfo.put("ctrApproved2", "");
 
 
 

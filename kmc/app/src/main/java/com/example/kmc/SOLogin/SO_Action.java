@@ -66,7 +66,7 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.c2:
-                i = new Intent(this, PSAmountToDB.class);
+                i = new Intent(this, SOAmountDBToBen.class);
                 i.putExtra("mandal",mandal);
                 i.putExtra("sector",sector);
                 startActivity(i);
