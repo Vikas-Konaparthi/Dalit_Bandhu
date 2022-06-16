@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".SOLogin.SOUserDetailsAmountDBToBen"
+            android:exported="false" />
+        <activity
+            android:name=".SOLogin.SOAmountDBToBen"
+            android:exported="false" />
+        <activity
             android:name=".SOLogin.SO_Action"
             android:exported="false" />
         <activity
@@ -64,7 +70,7 @@
             android:name=".SOLogin.SOUserDetails"
             android:exported="false" />
         <activity
-            android:name=".SOLogin.SOZone"
+            android:name=".SOLogin.SOListOfBen"
             android:exported="false" />
         <activity
             android:name=".login.SOLogin"

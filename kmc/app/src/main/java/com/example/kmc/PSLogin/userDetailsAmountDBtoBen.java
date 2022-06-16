@@ -81,6 +81,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
     String requestedAmount;
     String approvedAmount;
     String approvalAmountToBen;
+    String indDBAccount;
 
     private final int PICK_IMAGE_REQUEST = 22;
     String my_url="";
@@ -169,14 +170,25 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         vendorAgency=individualVendorAgency.getText().toString();
         vendorBankName=individualVendorBankName.getText().toString();
         approvalAmountToBen=approvalAmountToBeneficiary.getText().toString();
+        indDBAccount = getIntent().getStringExtra("uDBAccount").toString();
 //        if(collectorApproved.equals("yes"))
 //        {
 //            uploadImage.setEnabled(true);
 //        }
-        updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen);
+//        updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen);
+        if(Integer.parseInt(approvalAmountToBen)<=Integer.parseInt(indDBAccount)){
+            int Amount = Integer.parseInt(indDBAccount)-Integer.parseInt(approvalAmountToBen);
+            indDBAccount = Integer.toString(Amount);
+            updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen,indDBAccount);
+            individualDBAccount.setText("DB Account: "+indDBAccount.trim());
+        }
+        else{
+            System.out.println("Hello");
+            Toast.makeText(this, "Insufficient amount in DB Account", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void updateData(String aadharNumber,String vendorAgency,String vendorName,String vendorBankName,String vendorBankAccount,String vendorBankIFSC,String img_url,String appAmountToBen){
+    public void updateData(String aadharNumber,String vendorAgency,String vendorName,String vendorBankName,String vendorBankAccount,String vendorBankIFSC,String img_url,String appAmountToBen,String indDBAccount){
         if (vendorAgency.length() != 0 && vendorName.length() != 0 && vendorBankName.length() != 0 && vendorBankAccount.length() != 0 && vendorBankIFSC.length() != 0 && img_url.length()!=0 && appAmountToBen.length()!=0) {
 
 
@@ -189,6 +201,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         individualInfo.put("vendorBankName", vendorBankName.trim());
             individualInfo.put("psRequestedAmountToBeneficiary", appAmountToBen.trim());
             individualInfo.put("quotationImage", img_url.trim());
+            individualInfo.put("dbAccount",indDBAccount.trim());
 //        individualInfo.put("groundingStatus", groundingStatus);
 
 

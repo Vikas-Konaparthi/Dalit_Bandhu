@@ -11,7 +11,7 @@ import android.widget.Toolbar;
 
 import com.example.kmc.Individual;
 import com.example.kmc.R;
-import com.example.kmc.myadapter3;
+import com.example.kmc.SOAdapters.myadapter3;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SOZone extends AppCompatActivity {
+public class SOListOfBen extends AppCompatActivity {
     public Toolbar toolbar;
     RecyclerView recyclerView;
 
@@ -67,7 +67,7 @@ public class SOZone extends AppCompatActivity {
                         {
                             Individual obj=d.toObject(Individual.class);
                             if(obj.getMandal().toLowerCase(Locale.ROOT).equals(mandal.toLowerCase(Locale.ROOT))) {
-                                if (obj.getDbAccount().equals("1000000")||obj.getCtrApproved().equals("yes")) {
+                                if(obj.getSpApproved().equals("yes")) {
                                     if (obj.getPreferredUnit().toLowerCase(Locale.ROOT).equals(sector.toLowerCase(Locale.ROOT))) {
                                         datalist.add(obj);
 

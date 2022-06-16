@@ -60,7 +60,7 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
 
         switch (v.getId()){
             case R.id.c1:
-                i = new Intent(this, SOUserDetails.class);
+                i = new Intent(this, SOListOfBen.class);
                 i.putExtra("mandal",mandal);
                 i.putExtra("sector",sector);
                 startActivity(i);

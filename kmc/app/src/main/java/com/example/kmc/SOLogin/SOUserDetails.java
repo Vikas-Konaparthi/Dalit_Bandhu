@@ -47,7 +47,7 @@ public class SOUserDetails extends AppCompatActivity {
     public TextView individualBankAccNo;
     public TextView individualPSUpload;
     public TextView getIndividualBankIFSC;
-    private TextInputEditText individualSORemarks;
+//    private TextInputEditText individualSORemarks;
 
 
     String my_url;
@@ -95,7 +95,7 @@ public class SOUserDetails extends AppCompatActivity {
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
-        individualSORemarks=(TextInputEditText) findViewById(R.id.remarks);
+//        individualSORemarks=(TextInputEditText) findViewById(R.id.remarks);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
@@ -115,34 +115,34 @@ public class SOUserDetails extends AppCompatActivity {
         mandal=getIntent().getStringExtra("mandal").toString();;
         sector=getIntent().getStringExtra("sector").toString();;
 
-        individualSORemarks.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                enableSubmitIfReady();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                soRemarks= individualSORemarks.getText().toString();
-            }
-        });
-        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
-        if(collectorApproved.equals("yes"))
-        {
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-            individualSORemarks.setEnabled(false);
-        }else if(collectorApproved.equals("no"))
-        {
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-            individualSORemarks.setEnabled(false);
-        }
+//        individualSORemarks.addTextChangedListener(new TextWatcher() {
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                enableSubmitIfReady();
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                soRemarks= individualSORemarks.getText().toString();
+//            }
+//        });
+//        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+//        if(collectorApproved.equals("yes"))
+//        {
+//            approve.setEnabled(false);
+//            reject.setEnabled(false);
+//            individualSORemarks.setEnabled(false);
+//        }else if(collectorApproved.equals("no"))
+//        {
+//            approve.setEnabled(false);
+//            reject.setEnabled(false);
+//            individualSORemarks.setEnabled(false);
+//        }
 
 
 
@@ -153,13 +153,13 @@ public class SOUserDetails extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"PDF FILE SELECT"),12);
     }
-    public void enableSubmitIfReady(){
-        boolean isReady = individualSORemarks.getText().toString().length() > 3;
-        approve.setEnabled(isReady);
-        reject.setEnabled(isReady);
-    }
-
-
+//    public void enableSubmitIfReady(){
+//        boolean isReady = individualSORemarks.getText().toString().length() > 3;
+//        approve.setEnabled(isReady);
+//        reject.setEnabled(isReady);
+//    }
+//
+//
     public void document(View view) {
         String url=getIntent().getStringExtra("psUpload").toString();
         Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
@@ -167,19 +167,19 @@ public class SOUserDetails extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-    public void approve(View view) {
-        String approved="yes";
-        status="Waiting for Collector Approval";
-        updateData(aadharNumber,approved,status);
-    }
-
-
-    public void reject(View view) {
-        String approved="no";
-        status="rejected";
-        updateData(aadharNumber,approved,status);
-    }
+//
+//    public void approve(View view) {
+//        String approved="yes";
+//        status="Waiting for Collector Approval";
+//        updateData(aadharNumber,approved,status);
+//    }
+//
+//
+//    public void reject(View view) {
+//        String approved="no";
+//        status="rejected";
+//        updateData(aadharNumber,approved,status);
+//    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         pgsBar.setVisibility(View.VISIBLE);
@@ -241,7 +241,7 @@ public class SOUserDetails extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(SOUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SOUserDetails.this, SOZone.class);
+                                    Intent intent = new Intent(SOUserDetails.this, SOListOfBen.class);
                                     intent.putExtra("mandal",mandal);
                                     intent.putExtra("sector",sector);
                                     startActivity(intent);
