@@ -22,13 +22,13 @@
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_user_details_amount_dbto_ben.xml" value="0.15217391304347827" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_user_details_amount_to_db.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collectorzone.xml" value="0.184375" />
-        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_ps_action.xml" value="0.18" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_ps_action.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_psamount_dbto_ben.xml" value="0.12635869565217392" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_psamount_to_db.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_psgrounding.xml" value="0.15217391304347827" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_psgrounding_user_details.xml" value="0.15217391304347827" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_pszone.xml" value="0.14166666666666666" />
-        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_so_action.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_so_action.xml" value="0.22" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_soamount_dbto_ben.xml" value="0.14166666666666666" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_souser_details.xml" value="0.18" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_souser_details_amount_dbto_ben.xml" value="0.14166666666666666" />
@@ -41,6 +41,7 @@
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spuser_details_amount_release_to_db.xml" value="0.184375" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spzone.xml" value="0.1625" />
         <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_user_details_amount_dbto_ben.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/singlerow.xml" value="0.22" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_add_individual.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_home_page.xml" value="0.1703125" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_login.xml" value="0.184375" />

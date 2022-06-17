@@ -42,6 +42,9 @@ public class myadapter4Collector3 extends RecyclerView.Adapter<myadapter4Collect
     public void onBindViewHolder(@NonNull myadapter4Collector3.myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.t1.setText(datalist.get(position).getName());
         holder.t2.setText(datalist.get(position).getStatus());
+        holder.t3.setText("Preferred Unit: "+datalist.get(position).getPreferredUnit());
+        holder.t4.setText("DB Account Amount: "+datalist.get(position).getDbAccount());
+        holder.t5.setText("Approved Amount: "+datalist.get(position).getApprovalAmount());
         String inprogress="In Progress";
         String approve="approved";
         String reject="rejected";
@@ -97,20 +100,19 @@ public class myadapter4Collector3 extends RecyclerView.Adapter<myadapter4Collect
                 i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
                 i.putExtra("usoRemarks",datalist.get(position).getSo_remarks());
                 i.putExtra("usoQuotationAmount",datalist.get(position).getSo_quotation_amount());
-                i.putExtra("psRequestedAmount",datalist.get(position).getSo_quotation_amount());
+                i.putExtra("psRequestedAmount",datalist.get(position).getPsRequestedAmountToBeneficiary());
                 i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
                 i.putExtra("uVendorBankIFSC",datalist.get(position).getVendorIFSC());
                 i.putExtra("uVendorName",datalist.get(position).getVendorName());
                 i.putExtra("uVendorBankAccountNo",datalist.get(position).getVendorAccountNo());
                 i.putExtra("uVendorAgency",datalist.get(position).getVendorAgency());
                 i.putExtra("uVendorBankName",datalist.get(position).getVendorBankName());
-
-
+                //            i.putExtra("upsRequestedAmountToBeneficiary",datalist.get(position).getPsRequestedAmountToBeneficiary());
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
-                ((Activity)view.getContext()).finish();
+                ((Activity)holder.t1.getContext()).finish();
             }
         });
         holder.t2.setOnClickListener(new View.OnClickListener() {
@@ -147,17 +149,19 @@ public class myadapter4Collector3 extends RecyclerView.Adapter<myadapter4Collect
                 i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
                 i.putExtra("usoRemarks",datalist.get(position).getSo_remarks());
                 i.putExtra("usoQuotationAmount",datalist.get(position).getSo_quotation_amount());
-                i.putExtra("psRequestedAmount",datalist.get(position).getSo_quotation_amount());
+                i.putExtra("psRequestedAmount",datalist.get(position).getPsRequestedAmountToBeneficiary());
                 i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
                 i.putExtra("uVendorBankIFSC",datalist.get(position).getVendorIFSC());
                 i.putExtra("uVendorName",datalist.get(position).getVendorName());
                 i.putExtra("uVendorBankAccountNo",datalist.get(position).getVendorAccountNo());
                 i.putExtra("uVendorAgency",datalist.get(position).getVendorAgency());
                 i.putExtra("uVendorBankName",datalist.get(position).getVendorBankName());
+    //            i.putExtra("upsRequestedAmountToBeneficiary",datalist.get(position).getPsRequestedAmountToBeneficiary());
+
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t2.getContext().startActivity(i);
-                ((Activity)view.getContext()).finish();
+                ((Activity)holder.t2.getContext()).finish();
             }
         });
     }
@@ -174,10 +178,18 @@ public class myadapter4Collector3 extends RecyclerView.Adapter<myadapter4Collect
     {
         TextView t1;
         TextView t2;
+        TextView t3;
+        TextView t4;
+        TextView t5;
+
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.t1);
             t2=itemView.findViewById(R.id.t2);
+            t3=itemView.findViewById(R.id.t3);
+            t4=itemView.findViewById(R.id.t4);
+            t5=itemView.findViewById(R.id.t5);
+
         }
     }
 }

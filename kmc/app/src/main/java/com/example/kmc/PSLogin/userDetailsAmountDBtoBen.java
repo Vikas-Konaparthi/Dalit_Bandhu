@@ -45,6 +45,8 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
     public TextView individualBankAccNo;
     public TextView individualPSUpload;
     public TextView getIndividualBankIFSC;
+    public TextView getAmountApproved;
+    public TextView getDBAccountAmount;
     public TextView individualRequestedAmount;
     public TextView individualApprovedAmount;
     public TextView individualDBAccount;
@@ -111,6 +113,8 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
         individualDBAccount=(TextView) findViewById(R.id.dbAccount);
+        getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
+
         individualAmountRequired=(TextInputEditText) findViewById(R.id.individualAmountRequired);
         individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
         individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
@@ -133,6 +137,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         individualDBAccount.setText("DB Account: "+getIntent().getStringExtra("uDBAccount").toString());
+        getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
         //        individualVendorName.getEditText().setText(getIntent().getStringExtra("uVendorName").toString());
 //        individualVendorBankAccountNumber.getEditText().setText(getIntent().getStringExtra("uVendorBankAccount").toString());
 //        individualVendorBankIFSC.getEditText().setText(getIntent().getStringExtra("uVendorIFSC").toString());
@@ -176,9 +181,9 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
 //            uploadImage.setEnabled(true);
 //        }
 //        updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen);
-        if(Integer.parseInt(approvalAmountToBen)<=Integer.parseInt(indDBAccount)){
-            int Amount = Integer.parseInt(indDBAccount)-Integer.parseInt(approvalAmountToBen);
-            indDBAccount = Integer.toString(Amount);
+        if((Integer.parseInt(approvalAmountToBen)<=Integer.parseInt(indDBAccount))){
+//            int Amount = Integer.parseInt(indDBAccount)-Integer.parseInt(approvalAmountToBen);
+//            indDBAccount = Integer.toString(Amount);
             updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen,indDBAccount);
             individualDBAccount.setText("DB Account: "+indDBAccount.trim());
         }
@@ -199,9 +204,11 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
         individualInfo.put("vendorAgency", vendorAgency.trim());
         individualInfo.put("vendorBankName", vendorBankName.trim());
+            individualInfo.put("status", "Requesting for "+appAmountToBen.trim()+" to Beneficiary from DB Account.");
+
             individualInfo.put("psRequestedAmountToBeneficiary", appAmountToBen.trim());
             individualInfo.put("quotationImage", img_url.trim());
-            individualInfo.put("dbAccount",indDBAccount.trim());
+//            individualInfo.put("approvalAmountToBen",indDBAccount.trim());
 //        individualInfo.put("groundingStatus", groundingStatus);
 
 
@@ -220,7 +227,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
                                     public void onSuccess(Void unused) {
 
                                         Toast.makeText(userDetailsAmountDBtoBen.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(userDetailsAmountDBtoBen.this, PSAmountToDB.class);
+                                        Intent i = new Intent(userDetailsAmountDBtoBen.this, PSAmountDBToBen.class);
                                         i.putExtra("village", village.trim());
                                         i.putExtra("mandal", mandal.trim());
                                         i.putExtra("district", district.trim());

@@ -165,7 +165,7 @@ public class addIndividual extends AppCompatActivity {
             //
             individualInfo.put("individualAmountRequired", "");
             individualInfo.put("spAmountApproved", "");
-            individualInfo.put("dbAccount", "");
+            individualInfo.put("dbAccount", "0");
             individualInfo.put("psUpload", my_url);
             individualInfo.put("spApproved", "");
             individualInfo.put("spApproved2", "");

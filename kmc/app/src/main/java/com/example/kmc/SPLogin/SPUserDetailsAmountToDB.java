@@ -47,6 +47,8 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
     private TextInputEditText spAmountApproved;
     public TextView getIndividualDBAmount;
     public TextView getIndividualApprovalAmount;
+    public TextView getAmountApproved;
+    public TextView getDBAccountAmount;
 
     Button approve;
     Button reject;
@@ -95,6 +97,8 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
         individualSPRemarks=(TextInputEditText) findViewById(R.id.remarks);
         spAmountApproved=(TextInputEditText) findViewById(R.id.spAmountApproved);
 
+        getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
+        getDBAccountAmount=(TextView) findViewById(R.id.dbAmount);
 //        getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
         getIndividualApprovalAmount=(TextView) findViewById(R.id.approvalAmount);
         approve=(Button)findViewById(R.id.approve);
@@ -114,7 +118,8 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         getIndividualRequestedAmount.setText("Requested Amount: "+getIntent().getStringExtra("uRequestedAmount").toString());
-
+        getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
+        getDBAccountAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
         //        getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
 
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
@@ -197,7 +202,7 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
           }
     public void approve(View view) {
         String approved="yes";
-        status="Waiting for Collector Sanction";
+        status=spApprovedAmount.trim()+" approved by Special Officer to DB Account ";
         updateData(aadharNumber,approved,status);
     }
 
@@ -228,7 +233,7 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(SPUserDetailsAmountToDB.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SPUserDetailsAmountToDB.this, ListOfBen.class);
+                                    Intent intent = new Intent(SPUserDetailsAmountToDB.this, SPAmountToDB.class);
                                     intent.putExtra("village1",village1);
                                     intent.putExtra("village2",village2);
                                     startActivity(intent);

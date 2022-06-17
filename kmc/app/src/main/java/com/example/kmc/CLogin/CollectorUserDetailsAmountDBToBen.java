@@ -54,6 +54,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
     public TextView getIndividualDBAmount;
     public TextView getIndividualsoRemarks;
     public TextView soQuotationAmount;
+    public TextView getAmountApproved;
     private TextInputEditText individualSPRemarks;
     private TextInputEditText individualQAmount;
 //    public TextView getIndividualRequestedAmount;
@@ -116,6 +117,8 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
         soQuotationAmount=(TextView) findViewById(R.id.soQuotationAmount);
         psRequestedAmount=(TextView) findViewById(R.id.psRequestedAmount);
         getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
+        getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
+
 //        individualSPRemark=(TextView) findViewById(R.id.spRemark);
 //        getIndividualRequestedAmount=(TextView) findViewById(R.id.requestedAmount);
 //        getSpApprovedAmount=(TextView) findViewById(R.id.spApprovedAmount);
@@ -149,6 +152,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
         getIndividualsoRemarks.setText("Section Officer Remark: "+getIntent().getStringExtra("usoRemarks").toString());;
         soQuotationAmount.setText("Section Officer Quotation: "+getIntent().getStringExtra("usoQuotationAmount").toString());;
         soApprovalAmount=getIntent().getStringExtra("usoQuotationAmount").toString();
+        getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
         //            individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
 //            getIndividualVendorName.setText("Vendor Name: "+getIntent().getStringExtra("uVendorName").toString());
 //            getIndividualVendorBankAccount.setText("Vendor Bank Account: "+getIntent().getStringExtra("uVendorBankAccount").toString());
@@ -158,7 +162,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
 //            getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
 //            approvalAmount=getIntent().getStringExtra("uApprovalAmount").toString();
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
-        collectorSanction=getIntent().getStringExtra("uSPAmountApproved").toString();
+//        collectorSanction=getIntent().getStringExtra("uSPAmountApproved").toString();
 
 //        String soApproved=getIntent().getStringExtra("uSOApproved").toString();
 //            dbAccount=getIntent().getStringExtra("uDbAccount").toString();
@@ -251,10 +255,13 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
 //        startActivity(intent);
 //    }
     public void approve(View view) {
-        String collectorSanctionAmount=collectorSanction;
+
         String approved="yes";
-        status="Approved";
-        updateData(aadharNumber,approved,status,collectorSanctionAmount);
+        int updateDBAccount=Integer.parseInt(getIntent().getStringExtra("uDbAccount").toString())-Integer.parseInt(soApprovalAmount);
+        String updateAmount=Integer.toString(updateDBAccount);
+        int approvalAmount=Integer.parseInt(getIntent().getStringExtra("uApprovalAmount").toString())+Integer.parseInt(soApprovalAmount);
+        status=approvalAmount+ " released to beneficiary account.";
+        updateData(aadharNumber,approved,status,updateAmount,Integer.toString(approvalAmount));
     }
     //
 //
@@ -262,14 +269,15 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
         String collectorSanctionAmount="";
         String approved="no";
         status="Rejected";
-        updateData(aadharNumber,approved,status,collectorSanctionAmount);
+        int approvalAmount=Integer.parseInt(getIntent().getStringExtra("uApprovalAmount").toString());
+        updateData(aadharNumber,approved,status,collectorSanctionAmount,Integer.toString(approvalAmount));
     }
-    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount) {
+    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String approvalAmount) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("status", status);
         individualInfo.put("ctrApproved2", approved);
         individualInfo.put("dbAccount", collectorSanctionAmount);
-        individualInfo.put("approvalAmount", soApprovalAmount);
+        individualInfo.put("approvalAmount", approvalAmount);
 
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
@@ -286,7 +294,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(CollectorUserDetailsAmountDBToBen.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(CollectorUserDetailsAmountDBToBen.this, CollectorListOfBen.class);
+                                    Intent intent = new Intent(CollectorUserDetailsAmountDBToBen.this, CollectorAmountDBToBen.class);
                                     intent.putExtra("village",village);
                                     startActivity(intent);
                                     finish();

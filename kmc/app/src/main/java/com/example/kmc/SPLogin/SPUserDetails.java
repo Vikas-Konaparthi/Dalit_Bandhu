@@ -45,6 +45,8 @@ public class SPUserDetails extends AppCompatActivity {
     private TextInputEditText individualSPRemarks;
     public TextView getIndividualDBAmount;
     public TextView getIndividualApprovalAmount;
+    public TextView getAmountApproved;
+    public TextView getDBAccountAmount;
 
     Button approve;
     Button reject;
@@ -93,6 +95,8 @@ public class SPUserDetails extends AppCompatActivity {
         getIndividualApprovalAmount=(TextView) findViewById(R.id.approvalAmount);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
+        getDBAccountAmount=(TextView) findViewById(R.id.dbAmount);
+
 //        groundImageButton=(Button)findViewById(R.id.groundImage);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
         individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
@@ -109,7 +113,7 @@ public class SPUserDetails extends AppCompatActivity {
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         getIndividualApprovalAmount.setText("Approval Amount: "+getIntent().getStringExtra("uApprovalAmount").toString());
 //        getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
-
+        getDBAccountAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
         village=getIntent().getStringExtra("uVillage").toString();
         mandal= getIntent().getStringExtra("uMandal").toString();
@@ -173,7 +177,7 @@ public class SPUserDetails extends AppCompatActivity {
           }
     public void approve(View view) {
         String approved="yes";
-        status="Waiting for Collector Sanction";
+        status="Waiting for Panchayat Secretary Amount Request";
         updateData(aadharNumber,approved,status);
     }
 

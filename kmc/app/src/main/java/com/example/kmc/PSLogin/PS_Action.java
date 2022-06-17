@@ -81,7 +81,10 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.c4:
-                i = new Intent(this, Collector_Login.class);
+                i = new Intent(this, PSGrounding.class);
+                i.putExtra("village",village);
+                i.putExtra("mandal",mandal);
+                i.putExtra("district",district);
                 startActivity(i);
                 break;
         }

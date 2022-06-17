@@ -41,6 +41,9 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
     public void onBindViewHolder(@NonNull myadapter4.myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.t1.setText(datalist.get(position).getName());
         holder.t2.setText(datalist.get(position).getStatus());
+        holder.t3.setText("Preferred Unit: "+datalist.get(position).getPreferredUnit());
+        holder.t4.setText("DB Account Amount: "+datalist.get(position).getDbAccount());
+        holder.t5.setText("Approved Amount: "+datalist.get(position).getApprovalAmount());
         String inprogress="In Progress";
         String approve="approved";
         String reject="rejected";
@@ -97,7 +100,7 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
-                ((Activity)view.getContext()).finish();
+                ((Activity)holder.t1.getContext()).finish();
             }
         });
         holder.t2.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +136,7 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t2.getContext().startActivity(i);
-                ((Activity)view.getContext()).finish();
+                ((Activity)holder.t2.getContext()).finish();
             }
         });
     }
@@ -150,10 +153,18 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
     {
         TextView t1;
         TextView t2;
+        TextView t3;
+        TextView t4;
+        TextView t5;
+
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.t1);
             t2=itemView.findViewById(R.id.t2);
+            t3=itemView.findViewById(R.id.t3);
+            t4=itemView.findViewById(R.id.t4);
+            t5=itemView.findViewById(R.id.t5);
+
         }
     }
 }

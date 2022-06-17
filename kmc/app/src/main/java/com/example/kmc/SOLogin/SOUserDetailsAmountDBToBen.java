@@ -117,7 +117,7 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
         soQuotationAmount=(TextInputEditText) findViewById(R.id.quotationAmount);
 
 //        getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
-        getIndividualApprovalAmount=(TextView) findViewById(R.id.approvalAmount);
+        getIndividualApprovalAmount=(TextView) findViewById(R.id.approvedAmount);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
         quotationImageButton=(Button)findViewById(R.id.quotationImageButton);
@@ -142,7 +142,7 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
         getIndividualDBAmount.setText("DB Account: "+getIntent().getStringExtra("uDbAccount").toString());
         getPSRequestedAmount.setText("PS Requested Amount: "+getIntent().getStringExtra("uPSRequestedAmount").toString());
         //        getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
-
+        getIndividualApprovalAmount.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
         village=getIntent().getStringExtra("uVillage").toString();
         mandal=getIntent().getStringExtra("mandal").toString();;
@@ -222,8 +222,14 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
     }
     public void approve(View view) {
         String approved="yes";
-        status="Waiting for Collector Sanction";
-        updateData(aadharNumber,approved,status);
+        if(Integer.parseInt(getIntent().getStringExtra("uDbAccount").toString())>=Integer.parseInt(soQuoteAmount))
+        {
+            status=soQuoteAmount+" approved by SO waiting for collector approval";
+            updateData(aadharNumber,approved,status);
+        }else{
+            Toast.makeText(this, "Insuffient amount in DB Account.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 
@@ -253,7 +259,7 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(SOUserDetailsAmountDBToBen.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SOUserDetailsAmountDBToBen.this, SOUserDetailsAmountDBToBen.class);
+                                    Intent intent = new Intent(SOUserDetailsAmountDBToBen.this, SOAmountDBToBen.class);
                                     intent.putExtra("mandal",mandal);
                                     intent.putExtra("sector",sector);
                                     startActivity(intent);

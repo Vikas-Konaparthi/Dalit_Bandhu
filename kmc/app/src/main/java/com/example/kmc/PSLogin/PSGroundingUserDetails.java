@@ -48,13 +48,7 @@ public class PSGroundingUserDetails extends AppCompatActivity {
     public TextView individualRequestedAmount;
     public TextView individualApprovedAmount;
     public TextView individualDBAccount;
-    private TextInputEditText individualAmountRequired;
-    private TextInputEditText individualVendorName;
-    private TextInputEditText individualVendorBankAccountNumber;
-    private TextInputEditText individualVendorBankIFSC;
-    private TextInputEditText individualVendorAgency;
-    private TextInputEditText individualVendorBankName;
-    private TextInputEditText approvalAmountToBeneficiary;
+    public TextView approvalAmount;
     FirebaseFirestore db;
     String indivName;
     String fatherName;
@@ -92,7 +86,7 @@ public class PSGroundingUserDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_details_amount_dbto_ben);
+        setContentView(R.layout.activity_psgrounding_user_details);
         db=FirebaseFirestore.getInstance();
 
         pgsBar = (ProgressBar)findViewById(R.id.pBar);
@@ -111,13 +105,7 @@ public class PSGroundingUserDetails extends AppCompatActivity {
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
         individualDBAccount=(TextView) findViewById(R.id.dbAccount);
-        individualAmountRequired=(TextInputEditText) findViewById(R.id.individualAmountRequired);
-        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
-        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
-        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
-        individualVendorAgency=(TextInputEditText) findViewById(R.id.vendorAgency);
-        individualVendorBankName=(TextInputEditText) findViewById(R.id.vendorBankName);
-        approvalAmountToBeneficiary=(TextInputEditText) findViewById(R.id.approvalAmountToBeneficiary);
+        approvalAmount=(TextView) findViewById(R.id.approvalAmount);
         uploadImage=(Button) findViewById(R.id.uploadImage);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
         individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
@@ -133,6 +121,7 @@ public class PSGroundingUserDetails extends AppCompatActivity {
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         individualDBAccount.setText("DB Account: "+getIntent().getStringExtra("uDBAccount").toString());
+        approvalAmount.setText("Approved Amount: "+getIntent().getStringExtra("uApprovalAmount").toString());
         //        individualVendorName.getEditText().setText(getIntent().getStringExtra("uVendorName").toString());
 //        individualVendorBankAccountNumber.getEditText().setText(getIntent().getStringExtra("uVendorBankAccount").toString());
 //        individualVendorBankIFSC.getEditText().setText(getIntent().getStringExtra("uVendorIFSC").toString());
@@ -151,7 +140,7 @@ public class PSGroundingUserDetails extends AppCompatActivity {
 
     }
 
-    public void uploadQuoteImg(View view) {
+    public void uploadGroundingImg(View view) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -164,44 +153,33 @@ public class PSGroundingUserDetails extends AppCompatActivity {
     public void submitButton(View view) {
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
 //        amountRequired=individualAmountRequired.getText().toString();
-        vendorBankAccount=individualVendorBankAccountNumber.getText().toString();
-        vendorName=individualVendorName.getText().toString();
-        vendorBankIFSC=individualVendorBankIFSC.getText().toString();
-        vendorAgency=individualVendorAgency.getText().toString();
-        vendorBankName=individualVendorBankName.getText().toString();
-        approvalAmountToBen=approvalAmountToBeneficiary.getText().toString();
-        indDBAccount = getIntent().getStringExtra("uDBAccount").toString();
+//        indDBAccount = getIntent().getStringExtra("uDBAccount").toString();
 //        if(collectorApproved.equals("yes"))
 //        {
 //            uploadImage.setEnabled(true);
 //        }
-//        updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen);
-        if(Integer.parseInt(approvalAmountToBen)<=Integer.parseInt(indDBAccount)){
-            int Amount = Integer.parseInt(indDBAccount)-Integer.parseInt(approvalAmountToBen);
-            indDBAccount = Integer.toString(Amount);
-            updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen,indDBAccount);
-            individualDBAccount.setText("DB Account: "+indDBAccount.trim());
-        }
-        else{
-            System.out.println("Hello");
-            Toast.makeText(this, "Insufficient amount in DB Account", Toast.LENGTH_SHORT).show();
-        }
+        updateData(aadharNumber,my_url);
+//        if(Integer.parseInt(approvalAmountToBen)<=Integer.parseInt(indDBAccount)){
+//            int Amount = Integer.parseInt(indDBAccount)-Integer.parseInt(approvalAmountToBen);
+//            indDBAccount = Integer.toString(Amount);
+//            updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen,indDBAccount);
+//            individualDBAccount.setText("DB Account: "+indDBAccount.trim());
+//        }
+//        else{
+//            System.out.println("Hello");
+//            Toast.makeText(this, "Insufficient amount in DB Account", Toast.LENGTH_SHORT).show();
+//        }
     }
 
-    public void updateData(String aadharNumber,String vendorAgency,String vendorName,String vendorBankName,String vendorBankAccount,String vendorBankIFSC,String img_url,String appAmountToBen,String indDBAccount){
-        if (vendorAgency.length() != 0 && vendorName.length() != 0 && vendorBankName.length() != 0 && vendorBankAccount.length() != 0 && vendorBankIFSC.length() != 0 && img_url.length()!=0 && appAmountToBen.length()!=0) {
+    public void updateData(String aadharNumber,String my_url){
+        if (my_url.length()!=0) {
 
 
             Map<String, Object> individualInfo = new HashMap<String, Object>();
 //            individualInfo.put("individualAmountRequired", amountRequired.trim());
-            individualInfo.put("vendorName", vendorName.trim());
-            individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
-            individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
-            individualInfo.put("vendorAgency", vendorAgency.trim());
-            individualInfo.put("vendorBankName", vendorBankName.trim());
-            individualInfo.put("psRequestedAmountToBeneficiary", appAmountToBen.trim());
-            individualInfo.put("quotationImage", img_url.trim());
-            individualInfo.put("dbAccount",indDBAccount.trim());
+            individualInfo.put("grounding_img", my_url.trim());
+            individualInfo.put("status", "Grounded Successfully");
+            individualInfo.put("groundingStatus", "yes");
 //        individualInfo.put("groundingStatus", groundingStatus);
 
 
@@ -219,8 +197,8 @@ public class PSGroundingUserDetails extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void unused) {
 
-                                        Toast.makeText(userDetailsAmountDBtoBen.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(userDetailsAmountDBtoBen.this, PSAmountToDB.class);
+                                        Toast.makeText(PSGroundingUserDetails.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(PSGroundingUserDetails.this, PSGrounding.class);
                                         i.putExtra("village", village.trim());
                                         i.putExtra("mandal", mandal.trim());
                                         i.putExtra("district", district.trim());
@@ -230,12 +208,12 @@ public class PSGroundingUserDetails extends AppCompatActivity {
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(userDetailsAmountDBtoBen.this, "Error occured", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PSGroundingUserDetails.this, "Error occured", Toast.LENGTH_SHORT).show();
                             }
                         });
 
                     } else {
-                        Toast.makeText(userDetailsAmountDBtoBen.this, "Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PSGroundingUserDetails.this, "Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -252,7 +230,7 @@ public class PSGroundingUserDetails extends AppCompatActivity {
             final String timestamp = ""+System.currentTimeMillis();
             StorageReference storageReference = FirebaseStorage.getInstance().getReference();
             final String messagePUSHID = timestamp;
-            Toast.makeText(userDetailsAmountDBtoBen.this, image_uri.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(PSGroundingUserDetails.this, image_uri.toString(),Toast.LENGTH_SHORT).show();
             // Here we are uploading the pdf in firebase storage with the name of current time
             final StorageReference filepath = storageReference.child(messagePUSHID+"."+"pdf");
             filepath.putFile(image_uri).continueWithTask(new Continuation(){
@@ -270,12 +248,12 @@ public class PSGroundingUserDetails extends AppCompatActivity {
                         Uri uri = task.getResult();
                         my_url = uri.toString();
                         pgsBar.setVisibility(View.GONE);
-                        Toast.makeText(userDetailsAmountDBtoBen.this,"File Uploaded Successfully",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PSGroundingUserDetails.this,"File Uploaded Successfully",Toast.LENGTH_SHORT).show();
 //                        Intent i = new Intent(Intent.ACTION_VIEW);
 //                        i.setData(Uri.parse(my_url));
 //                        startActivity(i);
                     }else{
-                        Toast.makeText(userDetailsAmountDBtoBen.this,"Upload Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PSGroundingUserDetails.this,"Upload Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

@@ -47,6 +47,8 @@ public class SOUserDetails extends AppCompatActivity {
     public TextView individualBankAccNo;
     public TextView individualPSUpload;
     public TextView getIndividualBankIFSC;
+    public TextView getAmountApproved;
+    public TextView getDBAccountAmount;
 //    private TextInputEditText individualSORemarks;
 
 
@@ -95,6 +97,8 @@ public class SOUserDetails extends AppCompatActivity {
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
+        getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
+        getDBAccountAmount=(TextView) findViewById(R.id.dbAmount);
 //        individualSORemarks=(TextInputEditText) findViewById(R.id.remarks);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
@@ -111,6 +115,8 @@ public class SOUserDetails extends AppCompatActivity {
         individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
+        getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
+        getDBAccountAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDBAccount").toString());
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
         mandal=getIntent().getStringExtra("mandal").toString();;
         sector=getIntent().getStringExtra("sector").toString();;

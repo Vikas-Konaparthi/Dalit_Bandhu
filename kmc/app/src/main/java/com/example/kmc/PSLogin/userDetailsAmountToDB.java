@@ -46,7 +46,10 @@ public class userDetailsAmountToDB extends AppCompatActivity {
     public TextView individualBankAccNo;
     public TextView individualPSUpload;
     public TextView getIndividualBankIFSC;
+    public TextView getAmountApproved;
+    public TextView getDBAccountAmount;
     private TextInputEditText individualAmountRequired;
+
 //    private TextInputEditText individualVendorName;
 //    private TextInputEditText individualVendorBankAccountNumber;
 //    private TextInputEditText individualVendorBankIFSC;
@@ -102,6 +105,8 @@ public class userDetailsAmountToDB extends AppCompatActivity {
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
+        getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
+        getDBAccountAmount=(TextView) findViewById(R.id.dbAmount);
         individualAmountRequired=(TextInputEditText) findViewById(R.id.individualAmountRequired);
 //        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
 //        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
@@ -122,7 +127,9 @@ public class userDetailsAmountToDB extends AppCompatActivity {
         individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
-//        individualVendorName.getEditText().setText(getIntent().getStringExtra("uVendorName").toString());
+        getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
+        getDBAccountAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDBAccount").toString());
+        //        individualVendorName.getEditText().setText(getIntent().getStringExtra("uVendorName").toString());
 //        individualVendorBankAccountNumber.getEditText().setText(getIntent().getStringExtra("uVendorBankAccount").toString());
 //        individualVendorBankIFSC.getEditText().setText(getIntent().getStringExtra("uVendorIFSC").toString());
         village=getIntent().getStringExtra("uVillage").toString();
@@ -172,6 +179,7 @@ public class userDetailsAmountToDB extends AppCompatActivity {
 
             Map<String, Object> individualInfo = new HashMap<String, Object>();
             individualInfo.put("individualAmountRequired", amountRequired.trim());
+            individualInfo.put("status", "Waiting for "+amountRequired.trim()+ " approval to DB Account.");
 //        individualInfo.put("vendorName", vendorName.trim());
 //        individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
 //        individualInfo.put("vendorIFSC", vendorBankIFSC.trim());

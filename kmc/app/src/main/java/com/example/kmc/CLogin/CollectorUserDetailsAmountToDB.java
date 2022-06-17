@@ -53,6 +53,8 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
     private TextInputEditText individualQAmount;
     public TextView getIndividualRequestedAmount;
     public TextView getSpApprovedAmount;
+    public TextView getAmountApproved;
+    public TextView getDBAccountAmount;
     Button release;
     Button sanction;
 
@@ -106,6 +108,8 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
         individualSPRemark=(TextView) findViewById(R.id.spRemark);
         getIndividualRequestedAmount=(TextView) findViewById(R.id.requestedAmount);
         getSpApprovedAmount=(TextView) findViewById(R.id.spApprovedAmount);
+        getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
+        getDBAccountAmount=(TextView) findViewById(R.id.dbAmount);
 
 //            groundImageButton=(Button)findViewById(R.id.groundImage);
 //            sanction=(Button)findViewById(R.id.sanction);
@@ -128,7 +132,10 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
         getIndividualRequestedAmount.setText("Requested Amount: "+getIntent().getStringExtra("uRequestedAmount").toString());
         getSpApprovedAmount.setText("Special Officer Approved Amount: "+getIntent().getStringExtra("uSPAmountApproved").toString());
         individualSPRemark.setText("Special Officer Remark: "+getIntent().getStringExtra("uSPRemarks").toString());
-    //            individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
+        getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
+        getDBAccountAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDBAccount").toString());
+
+        //            individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
 //            getIndividualVendorName.setText("Vendor Name: "+getIntent().getStringExtra("uVendorName").toString());
 //            getIndividualVendorBankAccount.setText("Vendor Bank Account: "+getIntent().getStringExtra("uVendorBankAccount").toString());
 //            getIndividualVendorBankIFSC.setText("Vendor Bank IFSC: "+getIntent().getStringExtra("uVendorIFSC").toString());
@@ -232,7 +239,7 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
     public void approve(View view) {
         String collectorSanctionAmount=collectorSanction;
         String approved="yes";
-        status="Approved";
+        status=collectorSanction+" Credited to DB Account";
         updateData(aadharNumber,approved,status,collectorSanctionAmount);
     }
 //
@@ -263,7 +270,7 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(CollectorUserDetailsAmountToDB.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(CollectorUserDetailsAmountToDB.this, CollectorListOfBen.class);
+                                    Intent intent = new Intent(CollectorUserDetailsAmountToDB.this, CollectorAmountToDB.class);
                                     intent.putExtra("village",village);
                                     startActivity(intent);
                                     finish();

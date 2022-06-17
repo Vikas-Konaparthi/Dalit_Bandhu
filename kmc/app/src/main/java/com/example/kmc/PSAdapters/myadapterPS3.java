@@ -1,6 +1,7 @@
 package com.example.kmc.PSAdapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -38,6 +39,9 @@ public class myadapterPS3 extends RecyclerView.Adapter<myadapterPS3.myviewholder
     public void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.t1.setText(datalist.get(position).getName());
         holder.t2.setText("Status: "+datalist.get(position).getStatus());
+        holder.t3.setText("Preferred Unit: "+datalist.get(position).getPreferredUnit());
+        holder.t4.setText("DB Account Amount: "+datalist.get(position).getDbAccount());
+        holder.t5.setText("Approved Amount: "+datalist.get(position).getApprovalAmount());
         String inprogress="In Progress";
         String approve="approved";
         String reject="rejected";
@@ -83,11 +87,14 @@ public class myadapterPS3 extends RecyclerView.Adapter<myadapterPS3.myviewholder
                 i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
                 i.putExtra("uVendorBankAccount",datalist.get(position).getVendorAccountNo());
                 i.putExtra("uVendorName",datalist.get(position).getVendorName());
-                i.putExtra("uSPApproved",datalist.get(position).getSpApproved());
                 i.putExtra("uDBAccount",datalist.get(position).getDbAccount());
+                i.putExtra("uSPApproved",datalist.get(position).getSpApproved());
+                i.putExtra("uCtrApproved2",datalist.get(position).getCtrApproved2());
+                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
+                ((Activity)holder.t1.getContext()).finish();
 
             }
         });
@@ -117,9 +124,12 @@ public class myadapterPS3 extends RecyclerView.Adapter<myadapterPS3.myviewholder
                 i.putExtra("uVendorName",datalist.get(position).getVendorName());
                 i.putExtra("uSPApproved",datalist.get(position).getSpApproved());
                 i.putExtra("uDBAccount",datalist.get(position).getDbAccount());
+                i.putExtra("uCtrApproved2",datalist.get(position).getCtrApproved2());
+                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t2.getContext().startActivity(i);
+                ((Activity)holder.t2.getContext()).finish();
             }
         });
 
@@ -134,10 +144,18 @@ public class myadapterPS3 extends RecyclerView.Adapter<myadapterPS3.myviewholder
     {
         TextView t1;
         TextView t2;
+        TextView t3;
+        TextView t4;
+        TextView t5;
+
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.t1);
             t2=itemView.findViewById(R.id.t2);
+            t3=itemView.findViewById(R.id.t3);
+            t4=itemView.findViewById(R.id.t4);
+            t5=itemView.findViewById(R.id.t5);
+
         }
     }
 }
