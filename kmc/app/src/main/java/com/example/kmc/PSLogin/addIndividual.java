@@ -190,7 +190,6 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("ctrApproved2", "");
 
 
-
             //
             db.collection("individuals").add(individualInfo)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

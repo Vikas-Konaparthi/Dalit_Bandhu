@@ -237,7 +237,8 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
 //        startActivity(intent);
 //    }
     public void approve(View view) {
-        String collectorSanctionAmount=collectorSanction;
+        int newAmount=Integer.parseInt(getIntent().getStringExtra("uDBAccount").toString())+Integer.parseInt(collectorSanction);
+        String collectorSanctionAmount=Integer.toString(newAmount);
         String approved="yes";
         status=collectorSanction+" Credited to DB Account";
         updateData(aadharNumber,approved,status,collectorSanctionAmount);

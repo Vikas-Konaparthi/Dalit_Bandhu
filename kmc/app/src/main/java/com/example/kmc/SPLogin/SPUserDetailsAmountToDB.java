@@ -203,7 +203,12 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
     public void approve(View view) {
         String approved="yes";
         status=spApprovedAmount.trim()+" approved by Special Officer to DB Account ";
-        updateData(aadharNumber,approved,status);
+        if(Integer.parseInt(spApprovedAmount)>1000000)
+        {
+            updateData(aadharNumber,approved,status);
+        }else{
+            Toast.makeText(this, "Amount limit exceed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

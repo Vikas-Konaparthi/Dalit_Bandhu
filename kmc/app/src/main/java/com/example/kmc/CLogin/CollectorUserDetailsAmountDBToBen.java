@@ -55,7 +55,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
     public TextView getIndividualsoRemarks;
     public TextView soQuotationAmount;
     public TextView getAmountApproved;
-    private TextInputEditText individualSPRemarks;
+    private TextInputEditText collectorNewApprovalAmount;
     private TextInputEditText individualQAmount;
 //    public TextView getIndividualRequestedAmount;
 //    public TextView getSpApprovedAmount;
@@ -88,6 +88,8 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
     Button groundImageButton;
     String collectorSanction;
     String soApprovalAmount;
+    String collectorNewAppAmount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +120,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
         psRequestedAmount=(TextView) findViewById(R.id.psRequestedAmount);
         getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
         getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
+        collectorNewApprovalAmount=(TextInputEditText) findViewById(R.id.collectorApprovalAmount);
 
 //        individualSPRemark=(TextView) findViewById(R.id.spRemark);
 //        getIndividualRequestedAmount=(TextView) findViewById(R.id.requestedAmount);
@@ -257,14 +260,31 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
     public void approve(View view) {
 
         String approved="yes";
-        int updateDBAccount=Integer.parseInt(getIntent().getStringExtra("uDbAccount").toString())-Integer.parseInt(soApprovalAmount);
-        String updateAmount=Integer.toString(updateDBAccount);
-        int approvalAmount=Integer.parseInt(getIntent().getStringExtra("uApprovalAmount").toString())+Integer.parseInt(soApprovalAmount);
-        status=approvalAmount+ " released to beneficiary account.";
-        updateData(aadharNumber,approved,status,updateAmount,Integer.toString(approvalAmount));
+        if(collectorNewApprovalAmount.getText().toString().equals(""))
+        {
+            int updateDBAccount=Integer.parseInt(getIntent().getStringExtra("uDbAccount").toString())-Integer.parseInt(soApprovalAmount);
+            String updateAmount=Integer.toString(updateDBAccount);
+            int approvalAmount=Integer.parseInt(getIntent().getStringExtra("uApprovalAmount").toString())+Integer.parseInt(soApprovalAmount);
+            status=approvalAmount+ " released to beneficiary account.";
+            updateData(aadharNumber,approved,status,updateAmount,Integer.toString(approvalAmount));
+        }else{
+            if(Integer.parseInt(collectorNewApprovalAmount.getText().toString())<=Integer.parseInt(getIntent().getStringExtra("uDbAccount").toString()))
+            {
+                collectorNewAppAmount=collectorNewApprovalAmount.getText().toString();
+                int updateDBAccount=Integer.parseInt(getIntent().getStringExtra("uDbAccount").toString())-Integer.parseInt(collectorNewAppAmount);
+                String updateAmount=Integer.toString(updateDBAccount);
+                int approvalAmount=Integer.parseInt(getIntent().getStringExtra("uApprovalAmount").toString())+Integer.parseInt(collectorNewAppAmount);
+                status=approvalAmount+ " released to beneficiary account.";
+                updateData(aadharNumber,approved,status,updateAmount,Integer.toString(approvalAmount));
+            }else{
+                Toast.makeText(this, "Insufficient amount in DB Account.", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+
+
     }
-    //
-//
     public void reject(View view) {
         String collectorSanctionAmount="";
         String approved="no";
