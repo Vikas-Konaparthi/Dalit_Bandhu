@@ -1,4 +1,5 @@
-package com.example.kmc.SPAdapters;
+package com.example.kmc.CollectorAdapters;
+
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,35 +13,34 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.kmc.CLogin.CollectorGrounding;
+import com.example.kmc.CLogin.CollectorGroundingUserDetails;
+import com.example.kmc.CLogin.CollectorUserDetailsAmountDBToBen;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
-import com.example.kmc.SPLogin.SPUserDetails;
-import com.example.kmc.SPLogin.SPUserDetailsAmountToDB;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class myadapterSP2 extends RecyclerView.Adapter<myadapterSP2.myviewholder>
+public class myadapter4Collector4 extends RecyclerView.Adapter<myadapter4Collector4.myviewholder>
 {
     ArrayList<Individual> datalist;
-    String village1;
-    String village2;
+    String village;
 
-    public myadapterSP2(ArrayList<Individual> datalist, String village1, String village2) {
+    public myadapter4Collector4(ArrayList<Individual> datalist, String village) {
         this.datalist = datalist;
-        this.village1=village1;
-        this.village2=village2;
+        this.village=village;
     }
 
     @NonNull
     @Override
-    public myadapterSP2.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myadapter4Collector4.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow,parent,false);
-        return new myadapterSP2.myviewholder(view);
+        return new myadapter4Collector4.myviewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull myadapter4Collector4.myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.t1.setText(datalist.get(position).getName());
         holder.t2.setText(datalist.get(position).getStatus());
         holder.t3.setText("Preferred Unit: "+datalist.get(position).getPreferredUnit());
@@ -69,7 +69,7 @@ public class myadapterSP2 extends RecyclerView.Adapter<myadapterSP2.myviewholder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(holder.t1.getContext(), SPUserDetailsAmountToDB.class);
+                Intent i = new Intent(holder.t1.getContext(), CollectorGroundingUserDetails.class);
                 i.putExtra("uname",datalist.get(position).getName());
                 i.putExtra("ufname",datalist.get(position).getFatherName());
                 i.putExtra("uAge",datalist.get(position).getAge());
@@ -82,26 +82,45 @@ public class myadapterSP2 extends RecyclerView.Adapter<myadapterSP2.myviewholder
                 i.putExtra("uPreferredUnit",datalist.get(position).getPreferredUnit());
                 i.putExtra("uBankName",datalist.get(position).getBankName());
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
-                i.putExtra("psUpload",datalist.get(position).getPsUpload());
+                i.putExtra("upsUpload",datalist.get(position).getPsUpload());
+                i.putExtra("usecOfficerUpload",datalist.get(position).getSecOfficerUpload());
+                i.putExtra("uSPRemarks",datalist.get(position).getSp_remarks());
+                i.putExtra("uSORemarks",datalist.get(position).getSo_remarks());
+                i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
-                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
-                i.putExtra("village1",village1);
-                i.putExtra("village2",village2);
-                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+                i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
+                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
+                i.putExtra("village",village);
+                i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
                 i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
-                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
                 i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+                i.putExtra("uSPApproved2",datalist.get(position).getSpApproved2());
+                i.putExtra("uSPAmountApproved",datalist.get(position).getSpAmountApproved());
+                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
+                i.putExtra("usoRemarks",datalist.get(position).getSo_remarks());
+                i.putExtra("usoQuotationAmount",datalist.get(position).getSo_quotation_amount());
+                i.putExtra("psRequestedAmount",datalist.get(position).getPsRequestedAmountToBeneficiary());
+                i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
+                i.putExtra("uVendorBankIFSC",datalist.get(position).getVendorIFSC());
+                i.putExtra("uVendorName",datalist.get(position).getVendorName());
+                i.putExtra("uVendorBankAccountNo",datalist.get(position).getVendorAccountNo());
+                i.putExtra("uVendorAgency",datalist.get(position).getVendorAgency());
+                i.putExtra("uVendorBankName",datalist.get(position).getVendorBankName());
+                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
+                //            i.putExtra("upsRequestedAmountToBeneficiary",datalist.get(position).getPsRequestedAmountToBeneficiary());
+
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
                 ((Activity)holder.t1.getContext()).finish();
             }
         }) ;
+
 //        holder.t1.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent i = new Intent(holder.t1.getContext(), SPUserDetailsAmountToDB.class);
+//                Intent i = new Intent(holder.t1.getContext(), CollectorGroundingUserDetails.class);
 //                i.putExtra("uname",datalist.get(position).getName());
 //                i.putExtra("ufname",datalist.get(position).getFatherName());
 //                i.putExtra("uAge",datalist.get(position).getAge());
@@ -114,16 +133,34 @@ public class myadapterSP2 extends RecyclerView.Adapter<myadapterSP2.myviewholder
 //                i.putExtra("uPreferredUnit",datalist.get(position).getPreferredUnit());
 //                i.putExtra("uBankName",datalist.get(position).getBankName());
 //                i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
-//                i.putExtra("psUpload",datalist.get(position).getPsUpload());
+//                i.putExtra("upsUpload",datalist.get(position).getPsUpload());
+//                i.putExtra("usecOfficerUpload",datalist.get(position).getSecOfficerUpload());
+//                i.putExtra("uSPRemarks",datalist.get(position).getSp_remarks());
+//                i.putExtra("uSORemarks",datalist.get(position).getSo_remarks());
+//                i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
 //                i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
-//                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
-//                i.putExtra("village1",village1);
-//                i.putExtra("village2",village2);
-//                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+//                i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
 //                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
+//                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
+//                i.putExtra("village",village);
+//                i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
 //                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
-//                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
 //                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+//                i.putExtra("uSPApproved2",datalist.get(position).getSpApproved2());
+//                i.putExtra("uSPAmountApproved",datalist.get(position).getSpAmountApproved());
+//                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
+//                i.putExtra("usoRemarks",datalist.get(position).getSo_remarks());
+//                i.putExtra("usoQuotationAmount",datalist.get(position).getSo_quotation_amount());
+//                i.putExtra("psRequestedAmount",datalist.get(position).getPsRequestedAmountToBeneficiary());
+//                i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
+//                i.putExtra("uVendorBankIFSC",datalist.get(position).getVendorIFSC());
+//                i.putExtra("uVendorName",datalist.get(position).getVendorName());
+//                i.putExtra("uVendorBankAccountNo",datalist.get(position).getVendorAccountNo());
+//                i.putExtra("uVendorAgency",datalist.get(position).getVendorAgency());
+//                i.putExtra("uVendorBankName",datalist.get(position).getVendorBankName());
+//                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
+//                //            i.putExtra("upsRequestedAmountToBeneficiary",datalist.get(position).getPsRequestedAmountToBeneficiary());
+//
 //
 //                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                holder.t1.getContext().startActivity(i);
@@ -133,7 +170,7 @@ public class myadapterSP2 extends RecyclerView.Adapter<myadapterSP2.myviewholder
 //        holder.t2.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent i = new Intent(holder.t1.getContext(), SPUserDetailsAmountToDB.class);
+//                Intent i = new Intent(holder.t1.getContext(), CollectorGroundingUserDetails.class);
 //                i.putExtra("uname",datalist.get(position).getName());
 //                i.putExtra("ufname",datalist.get(position).getFatherName());
 //                i.putExtra("uAge",datalist.get(position).getAge());
@@ -146,16 +183,34 @@ public class myadapterSP2 extends RecyclerView.Adapter<myadapterSP2.myviewholder
 //                i.putExtra("uPreferredUnit",datalist.get(position).getPreferredUnit());
 //                i.putExtra("uBankName",datalist.get(position).getBankName());
 //                i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
-//                i.putExtra("psUpload",datalist.get(position).getPsUpload());
+//                i.putExtra("upsUpload",datalist.get(position).getPsUpload());
+//                i.putExtra("usecOfficerUpload",datalist.get(position).getSecOfficerUpload());
+//                i.putExtra("uSPRemarks",datalist.get(position).getSp_remarks());
+//                i.putExtra("uSORemarks",datalist.get(position).getSo_remarks());
+//                i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
 //                i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
-//                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
-//                i.putExtra("village1",village1);
-//                i.putExtra("village2",village2);
-//                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+//                i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
 //                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
+//                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
+//                i.putExtra("village",village);
+//                i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
 //                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
-//                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
 //                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+//                i.putExtra("uSPApproved2",datalist.get(position).getSpApproved2());
+//                i.putExtra("uSPAmountApproved",datalist.get(position).getSpAmountApproved());
+//                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
+//                i.putExtra("usoRemarks",datalist.get(position).getSo_remarks());
+//                i.putExtra("usoQuotationAmount",datalist.get(position).getSo_quotation_amount());
+//                i.putExtra("psRequestedAmount",datalist.get(position).getPsRequestedAmountToBeneficiary());
+//                i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
+//                i.putExtra("uVendorBankIFSC",datalist.get(position).getVendorIFSC());
+//                i.putExtra("uVendorName",datalist.get(position).getVendorName());
+//                i.putExtra("uVendorBankAccountNo",datalist.get(position).getVendorAccountNo());
+//                i.putExtra("uVendorAgency",datalist.get(position).getVendorAgency());
+//                i.putExtra("uVendorBankName",datalist.get(position).getVendorBankName());
+//                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
+//    //            i.putExtra("upsRequestedAmountToBeneficiary",datalist.get(position).getPsRequestedAmountToBeneficiary());
+//
 //
 //                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                holder.t2.getContext().startActivity(i);
@@ -163,6 +218,7 @@ public class myadapterSP2 extends RecyclerView.Adapter<myadapterSP2.myviewholder
 //            }
 //        });
     }
+
 
 
 
@@ -190,3 +246,4 @@ public class myadapterSP2 extends RecyclerView.Adapter<myadapterSP2.myviewholder
         }
     }
 }
+

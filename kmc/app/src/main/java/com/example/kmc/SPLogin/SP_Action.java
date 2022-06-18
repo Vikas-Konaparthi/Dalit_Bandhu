@@ -76,8 +76,10 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.c4:
-//                i = new Intent(this, Collector_Login.class);
-//                startActivity(i);
+                i = new Intent(this, SPGrounding.class);
+                i.putExtra("village1",village1);
+                i.putExtra("village2",village2);
+                startActivity(i);
                 break;
         }
 

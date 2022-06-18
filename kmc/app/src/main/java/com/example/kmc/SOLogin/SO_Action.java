@@ -72,11 +72,10 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.c3:
-//                i = new Intent(this, PSAmountDBToBen.class);
-//                i.putExtra("village",village);
-//                i.putExtra("mandal",mandal);
-//                i.putExtra("district",district);
-//                startActivity(i);
+                i = new Intent(this, SOGrounding.class);
+                i.putExtra("mandal",mandal);
+                i.putExtra("sector",sector);
+                startActivity(i);
                 break;
             case R.id.c4:
 //                i = new Intent(this, Collector_Login.class);

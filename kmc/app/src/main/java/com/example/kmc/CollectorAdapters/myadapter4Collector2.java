@@ -65,10 +65,9 @@ public class myadapter4Collector2 extends RecyclerView.Adapter<myadapter4Collect
             //#00873E
             holder.t2.setTextColor(Color.parseColor("#F6BE00"));
         }
-
-        holder.t1.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent i = new Intent(holder.t1.getContext(), CollectorUserDetailsAmountToDB.class);
                 i.putExtra("uname",datalist.get(position).getName());
                 i.putExtra("ufname",datalist.get(position).getFatherName());
@@ -107,46 +106,88 @@ public class myadapter4Collector2 extends RecyclerView.Adapter<myadapter4Collect
                 holder.t1.getContext().startActivity(i);
                 ((Activity)holder.t1.getContext()).finish();
             }
-        });
-        holder.t2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(holder.t1.getContext(), CollectorUserDetailsAmountToDB.class);
-                i.putExtra("uname",datalist.get(position).getName());
-                i.putExtra("ufname",datalist.get(position).getFatherName());
-                i.putExtra("uAge",datalist.get(position).getAge());
-                i.putExtra("uHnumber",datalist.get(position).getHouseNo());
-                i.putExtra("uVillage",datalist.get(position).getVillage());
-                i.putExtra("uMandal",datalist.get(position).getMandal());
-                i.putExtra("uDistrict",datalist.get(position).getDistrict());
-                i.putExtra("uAadharNumber",datalist.get(position).getAadhar());
-                i.putExtra("uMobileNo",datalist.get(position).getPhoneNo() );
-                i.putExtra("uPreferredUnit",datalist.get(position).getPreferredUnit());
-                i.putExtra("uBankName",datalist.get(position).getBankName());
-                i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
-                i.putExtra("upsUpload",datalist.get(position).getPsUpload());
-                i.putExtra("usecOfficerUpload",datalist.get(position).getSecOfficerUpload());
-                i.putExtra("uSPRemarks",datalist.get(position).getSp_remarks());
-                i.putExtra("uSORemarks",datalist.get(position).getSo_remarks());
-                i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
-                i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
-                i.putExtra("village",village);
-                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
-                i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
-                i.putExtra("uVendorBankAccount",datalist.get(position).getVendorAccountNo());
-                i.putExtra("uVendorName",datalist.get(position).getVendorName());
-                i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
-                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
-                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
-                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
-                i.putExtra("uSPApproved2",datalist.get(position).getSpApproved2());
-                i.putExtra("uSPAmountApproved",datalist.get(position).getSpAmountApproved());
-                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                holder.t2.getContext().startActivity(i);
-                ((Activity)holder.t2.getContext()).finish();
-            }
-        });
+        }) ;
+//        holder.t1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(holder.t1.getContext(), CollectorUserDetailsAmountToDB.class);
+//                i.putExtra("uname",datalist.get(position).getName());
+//                i.putExtra("ufname",datalist.get(position).getFatherName());
+//                i.putExtra("uAge",datalist.get(position).getAge());
+//                i.putExtra("uHnumber",datalist.get(position).getHouseNo());
+//                i.putExtra("uVillage",datalist.get(position).getVillage());
+//                i.putExtra("uMandal",datalist.get(position).getMandal());
+//                i.putExtra("uDistrict",datalist.get(position).getDistrict());
+//                i.putExtra("uAadharNumber",datalist.get(position).getAadhar());
+//                i.putExtra("uMobileNo",datalist.get(position).getPhoneNo() );
+//                i.putExtra("uPreferredUnit",datalist.get(position).getPreferredUnit());
+//                i.putExtra("uBankName",datalist.get(position).getBankName());
+//                i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
+//                i.putExtra("upsUpload",datalist.get(position).getPsUpload());
+//                i.putExtra("usecOfficerUpload",datalist.get(position).getSecOfficerUpload());
+//                i.putExtra("uSPRemarks",datalist.get(position).getSp_remarks());
+//                i.putExtra("uSORemarks",datalist.get(position).getSo_remarks());
+//                i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
+//                i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+//                i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
+//                i.putExtra("uDBAccount",datalist.get(position).getDbAccount());
+//                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
+//                i.putExtra("village",village);
+//                i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
+//                i.putExtra("uVendorBankAccount",datalist.get(position).getVendorAccountNo());
+//                i.putExtra("uVendorName",datalist.get(position).getVendorName());
+//                i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
+//                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
+//                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+//                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
+//                i.putExtra("uSPApproved2",datalist.get(position).getSpApproved2());
+//                i.putExtra("uSPAmountApproved",datalist.get(position).getSpAmountApproved());
+//                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
+//
+//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                holder.t1.getContext().startActivity(i);
+//                ((Activity)holder.t1.getContext()).finish();
+//            }
+//        });
+//        holder.t2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(holder.t1.getContext(), CollectorUserDetailsAmountToDB.class);
+//                i.putExtra("uname",datalist.get(position).getName());
+//                i.putExtra("ufname",datalist.get(position).getFatherName());
+//                i.putExtra("uAge",datalist.get(position).getAge());
+//                i.putExtra("uHnumber",datalist.get(position).getHouseNo());
+//                i.putExtra("uVillage",datalist.get(position).getVillage());
+//                i.putExtra("uMandal",datalist.get(position).getMandal());
+//                i.putExtra("uDistrict",datalist.get(position).getDistrict());
+//                i.putExtra("uAadharNumber",datalist.get(position).getAadhar());
+//                i.putExtra("uMobileNo",datalist.get(position).getPhoneNo() );
+//                i.putExtra("uPreferredUnit",datalist.get(position).getPreferredUnit());
+//                i.putExtra("uBankName",datalist.get(position).getBankName());
+//                i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
+//                i.putExtra("upsUpload",datalist.get(position).getPsUpload());
+//                i.putExtra("usecOfficerUpload",datalist.get(position).getSecOfficerUpload());
+//                i.putExtra("uSPRemarks",datalist.get(position).getSp_remarks());
+//                i.putExtra("uSORemarks",datalist.get(position).getSo_remarks());
+//                i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
+//                i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+//                i.putExtra("village",village);
+//                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
+//                i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
+//                i.putExtra("uVendorBankAccount",datalist.get(position).getVendorAccountNo());
+//                i.putExtra("uVendorName",datalist.get(position).getVendorName());
+//                i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
+//                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
+//                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+//                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
+//                i.putExtra("uSPApproved2",datalist.get(position).getSpApproved2());
+//                i.putExtra("uSPAmountApproved",datalist.get(position).getSpAmountApproved());
+//                i.putExtra("uRequestedAmount",datalist.get(position).getIndividualAmountRequired());
+//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                holder.t2.getContext().startActivity(i);
+//                ((Activity)holder.t2.getContext()).finish();
+//            }
+//        });
     }
 
 

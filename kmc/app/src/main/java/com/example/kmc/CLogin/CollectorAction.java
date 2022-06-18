@@ -70,8 +70,9 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                 startActivity(i);
                 break;
             case R.id.c4:
-//                i = new Intent(this, Collector_Login.class);
-//                startActivity(i);
+                i = new Intent(this, CollectorGrounding.class);
+                i.putExtra("village",village);
+                startActivity(i);
                 break;
         }
 
